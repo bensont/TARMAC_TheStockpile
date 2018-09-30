@@ -1,6 +1,6 @@
-from ProductBuilder import ProductBuilder
+from ProductModels.ProductBuilder import ProductBuilder
 import os
-import url_tools
+from Tools import url_tools
 import re
 
 #URLs for various pages as strings
@@ -22,20 +22,22 @@ all_couches_soup = url_tools.get_soup_from_url(couch_url)
 product_list = []
 
 products_soup = all_couches_soup.findAll("div", class_="threeColumn product ")
-p = products_soup[0]
-couch_url = "https://www.ikea.com" + p.findAll("a", class_="productLink")[0]['href']
-couch_soup = url_tools.get_soup_from_url(couch_url)
+products_soup += all_couches_soup.findAll("div", class_="threeColumn product lastColumn")
 
-details_full_string = couch_soup.findAll("span", id = "type", class_ = "productType")[0].text
-product_list.append(ProductBuilder.product() \
-                                    .with_name(couch_soup.findAll("meta", attrs={'name':'product_name'})[0]['content']) \
-                                    .with_category(couch_soup.findAll("meta", attrs={'name':'IRWStats.categoryLocal'})[0]['content']) \
-                                    .with_description(p.findAll("span", class_="productDesp")[0].text) \
-                                    .with_price(couch_soup.findAll("meta", attrs={'name':'price'})[0]['content']) \
-                                    .with_details(re.findall(r'(\s+.*),(\s+.*)', details_full_string)[0][1]) \
-                                    .with_article_id(couch_soup.findAll("div", id = "itemNumber", class_="floatLeft")[0].text) \
-                                    .with_review(couch_soup.findAll("a", class_="ratingsCount")[0].text) \
-                                    .build())
+for i in range(len(products_soup)):
+    p = products_soup[i]
+    couch_url = "https://www.ikea.com" + p.findAll("a", class_="productLink")[0]['href']
+    couch_soup = url_tools.get_soup_from_url(couch_url)
 
-print(couch_soup.prettify())
-print(product_list)
+    details_full_string = couch_soup.findAll("span", id = "type", class_ = "productType")[0].text
+    review = couch_soup.findAll("a", class_="ratingsCount")[0].text
+    current_product = ProductBuilder.product() \
+                                        .with_name(couch_soup.findAll("meta", attrs={'name':'product_name'})[0]['content']) \
+                                        .with_category(couch_soup.findAll("meta", attrs={'name':'IRWStats.categoryLocal'})[0]['content']) \
+                                        .with_description(p.findAll("span", class_="productDesp")[0].text) \
+                                        .with_price(couch_soup.findAll("meta", attrs={'name':'price'})[0]['content']) \
+                                        .with_details(re.findall(r'(^\s*.*),(\s+.*)', details_full_string)[0][1]) \
+                                        .with_article_id(couch_soup.findAll("div", id = "itemNumber", class_="floatLeft")[0].text) \
+                                        .with_review(review if not review == "Review" else "N/A") \
+                                        .build()
+        product_list.append(current_product)

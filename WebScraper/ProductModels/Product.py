@@ -36,6 +36,13 @@ class Product():
     def get_category(self):
         return self.__category
 
+    def __eq__(self, other):
+        return (
+            other.get_name() == self.__name
+            and other.get_description() == self.__description
+            and other.get_price() == self.__price
+            )
+
     def __str__(self):
         return (
             f"Product with:\n \
@@ -46,7 +53,7 @@ class Product():
             Main Image URL: {self.__image_url}\n \
             Review: {self.__review} Stars\n \
             Article ID: {self.__article_id}\n \
-            Category: {self.__category}"
+            Category: {self.__category}\n"
             )
 
     def __repr__(self):
@@ -59,5 +66,5 @@ class Product():
             Main Image URL: {self.__image_url}\n \
             Review: {self.__review} Stars\n \
             Article ID: {self.__article_id}\n \
-            Category: {self.__category}"
+            Category: {self.__category}\n"
             )

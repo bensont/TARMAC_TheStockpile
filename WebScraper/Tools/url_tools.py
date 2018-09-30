@@ -2,6 +2,7 @@ from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
 import os.path
 import re
+
 cache_directory = "html_cache\\"
 #function to get make html soup from url
 def get_soup_from_url(url_string):
@@ -9,6 +10,7 @@ def get_soup_from_url(url_string):
     #and then return the soup
     cache_file_name = get_cache_file_name(url_string)
     if not os.path.exists(cache_file_name):
+        print("creating cache file...")
         uClient = ureq(url_string)
         thesoup = soup(uClient.read(), "html.parser")
         with open(cache_file_name, "w", encoding="utf-8") as f:
@@ -16,7 +18,7 @@ def get_soup_from_url(url_string):
         uClient.close()
     #else if the file does exist in the cache, make a soup out of it
     else:
-        with open(cache_file_name, "r") as f:
+        with open(cache_file_name, "r", encoding="utf-8") as f:
             thesoup = soup(f, "html.parser")
     return thesoup
 

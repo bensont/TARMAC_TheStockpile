@@ -1,4 +1,4 @@
-from Product import Product
+from .Product import Product
 
 class ProductBuilder:
 
