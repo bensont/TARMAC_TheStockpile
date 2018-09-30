@@ -4,7 +4,7 @@ import os
 from Tools import url_tools
 import re
 
-from slimit import ast
+
 from slimit.parser import Parser as JavascriptParser
 from slimit.visitors import nodevisitor
 
