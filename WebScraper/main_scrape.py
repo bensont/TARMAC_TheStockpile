@@ -40,4 +40,5 @@ for i in range(len(products_soup)):
                                         .with_article_id(couch_soup.findAll("div", id = "itemNumber", class_="floatLeft")[0].text) \
                                         .with_review(review if not review == "Review" else "N/A") \
                                         .build()
+
         product_list.append(current_product)
