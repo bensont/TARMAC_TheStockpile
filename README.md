@@ -1,2 +1,2 @@
 # IKEAProductsWebScraper
-Python Web Scraper for IKEA Products
+Main code-base for The Stockpile
