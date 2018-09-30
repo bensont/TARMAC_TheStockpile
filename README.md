@@ -1,2 +1,2 @@
-# TARMAC_TheStockpile
-Code for The Stockpile project
+# IKEAProductsWebScraper
+Python Web Scraper for IKEA Products
