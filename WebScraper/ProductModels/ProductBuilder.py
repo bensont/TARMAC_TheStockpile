@@ -49,4 +49,4 @@ class ProductBuilder:
         return self
 
     def build(self):
-        return Product(self)
+        return Product(product_builder = self)

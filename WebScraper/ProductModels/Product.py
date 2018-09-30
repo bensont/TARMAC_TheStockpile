@@ -1,7 +1,25 @@
 class Product():
 
     #Can only be initialized from a product builder
-    def __init__(self, product_builder):
+    def __init__(self, product_builder = None, copy_from = None):
+        if product_builder is not None and copy_from is None:
+            self.from_product_builder(product_builder)
+        elif copy_from is not None and product_builder is None:
+            self.from_copy(copy_from)
+        else:
+            print("Something went wrong when trying to make a product like you specified...")
+
+    def from_copy(self, copy_from):
+        self.__name = copy_from.get_name()
+        self.__details = copy_from.get_details()
+        self.__price = copy_from.get_price()
+        self.__description = copy_from.get_description()
+        self.__image_url = copy_from.get_image_url()
+        self.__review = copy_from.get_review()
+        self.__article_id = copy_from.get_article_id()
+        self.__category = copy_from.get_category()
+
+    def from_product_builder(self, product_builder):
         self.__name = product_builder.name
         self.__details = product_builder.details
         self.__price = product_builder.price
