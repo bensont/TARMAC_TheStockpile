@@ -42,7 +42,6 @@ def remove_dupes(product_list):
     for p in product_list:
         if p not in no_dupes:
             no_dupes.append(p)
-        else:
     return no_dupes
 
 
