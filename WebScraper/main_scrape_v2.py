@@ -33,17 +33,13 @@ def build_url_soup_list(category_url):
     category_element_products_soups = three_col + last_col
     product_list = []
     with open("urls.txt", "a+") as urltxt:
-        counter = 0
         for element in category_element_products_soups:
-            counter+=1
             individual_product_url = element.findAll("a", class_="productLink")[0]['href']
             urltxt.write(individual_product_url + "\n")
             try:
-                product_list.append(Product(url_string = individual_product_url))
+                product_list.append(Product(url_string = "https://www.ikea.com" + individual_product_url))
             except Exception as e:
-                print("error:",e)
                 traceback.print_exc()
-        print(f"write count: {counter}")
     return product_list
 
 
