@@ -1,17 +1,39 @@
 class Product():
 
-    # Can be initialized from either another product, or a product builder
     def __init__(self, product_builder=None, copy_from=None):
+        """
+        Summary:
+            initialize product by either copying OR building with product builder
+
+        Args:
+            product_builder (ProductBuilder)
+            copy_from (Product)
+
+        Returns:
+            Product: Initialized Product
+
+        Raises:
+            ValueError: raises exception in two cases, either both arguments were given, or none were given. This operates using XOR logic. Must be one or the other.
+        """
         if product_builder is not None and copy_from is None:
             self.from_product_builder(product_builder)
         elif copy_from is not None and product_builder is None:
             self.from_copy(copy_from)
         else:
-            print(
-                "Something went wrong when trying to make a product like you specified...")
+            raise ValueError(
+                "Cannot initialize a product as a copy and from a product builder. Pick one.")
 
-    # copy constructor helper
     def from_copy(self, copy_from):
+        """
+        Summary:
+            Helper function to initialize from a copy
+
+        Args:
+            copy_from (Product): product to copy from
+
+        Returns:
+            Product: Initialized Product
+        """
         self.__name = copy_from.get_name()
         self.__details = copy_from.get_details()
         self.__price = copy_from.get_price()
@@ -21,8 +43,17 @@ class Product():
         self.__article_id = copy_from.get_article_id()
         self.__category = copy_from.get_category()
 
-    # constructor from the product builder helper
     def from_product_builder(self, product_builder):
+        """
+        Summary:
+            Helper function to initialize from a product builder
+
+        Args:
+            product_builder (Product)
+
+        Returns:
+            Product: Initialized Product
+        """
         self.__name = product_builder.name
         self.__details = product_builder.details
         self.__price = product_builder.price
