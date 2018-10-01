@@ -3,7 +3,7 @@ import re
 from . import url_tools
 
 
-#Return a tuple (JSON, Soup) from the URL given
+# Return a tuple (JSON, Soup) from the URL given
 def get_json_and_soup_from_url(url_string):
     # turn that URL into soup
     couch_soup = url_tools.get_soup_from_url(url_string)
@@ -24,7 +24,7 @@ def get_json_and_soup_from_url(url_string):
         if product_data_json[i] == "{":
             start_index = i
             break
-    #cut the end off
+    # cut the end off
     end_index = len(product_data_json)
     for i in reversed(range(len(product_data_json))):
         if product_data_json[i] == "}":
