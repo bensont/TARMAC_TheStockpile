@@ -1,12 +1,14 @@
+from Tools import json_tools
+
 class Product():
 
-    def __init__(self, product_builder=None, copy_from=None):
+    def __init__(self, url_string=None, copy_from=None):
         """
         Summary:
-            initialize product by either copying OR building with product builder
+            initialize product by either copying OR from url
 
         Args:
-            product_builder (ProductBuilder)
+            url_string (ProductBuilder)
             copy_from (Product)
 
         Returns:
@@ -15,13 +17,13 @@ class Product():
         Raises:
             ValueError: raises exception in two cases, either both arguments were given, or none were given. This operates using XOR logic. Must be one or the other.
         """
-        if product_builder is not None and copy_from is None:
-            self.from_product_builder(product_builder)
-        elif copy_from is not None and product_builder is None:
+        if url_string is not None and copy_from is None:
+            self.from_url(url_string)
+        elif copy_from is not None and url_string is None:
             self.from_copy(copy_from)
         else:
             raise ValueError(
-                "Cannot initialize a product as a copy and from a product builder. Pick one.")
+                "Cannot initialize a product as a copy and from a URL. Pick one.")
 
     def from_copy(self, copy_from):
         """
@@ -43,25 +45,32 @@ class Product():
         self.__article_id = copy_from.get_article_id()
         self.__category = copy_from.get_category()
 
-    def from_product_builder(self, product_builder):
+    def from_url(self, url_string):
         """
         Summary:
-            Helper function to initialize from a product builder
+            make a product from a url
 
         Args:
-            product_builder (Product)
+            url_string (str)
 
         Returns:
-            Product: Initialized Product
+            Product: product with details scraped from url
         """
-        self.__name = product_builder.name
-        self.__details = product_builder.details
-        self.__price = product_builder.price
-        self.__description = product_builder.description
-        self.__image_url = product_builder.image_url
-        self.__review = product_builder.review
-        self.__article_id = product_builder.article_id
-        self.__category = product_builder.category
+        # load that string into a JSON and soup
+        couch_product_data_json, couch_soup = json_tools.get_product_data_from_url(
+            url_string)
+        smaller_chunk = couch_product_data_json['product']['items'][0]
+        review = couch_soup.findAll("a", class_="ratingsCount")[0].text
+        # build product
+        self.__name = smaller_chunk['name']
+        self.__category = couch_soup.findAll(
+            "meta", attrs={'name': 'IRWStats.categoryLocal'})[0]['content']
+        self.__description = smaller_chunk['type']
+        self.__price = smaller_chunk['prices']['normal']['priceNormal']['priceExclVat']
+        self.__details = [item['validDesign'][0] for item in couch_product_data_json['product']['items']]
+        self.__article_id = couch_product_data_json['product']['partNumber']
+        self.__review = review if not review == "Review" else "N/A"
+        self.__image_url = "https://ikea.com" + couch_soup.findAll("img", id="productImg")[0]['src']
 
     # GETTERS
     def get_name(self):
