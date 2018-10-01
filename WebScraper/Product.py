@@ -103,6 +103,7 @@ class Product():
             other.get_name() == self.__name
             and other.get_description() == self.__description
             and other.get_price() == self.__price
+            and other.get_details() == self.__details
         )
 
     # representations of the product object
