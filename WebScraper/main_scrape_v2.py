@@ -1,5 +1,5 @@
 # from ProductModels.ProductBuilder import ProductBuilder
-from ProductModels.Product import Product
+from Product import Product
 from Tools import url_tools
 
 

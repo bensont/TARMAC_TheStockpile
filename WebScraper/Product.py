@@ -40,7 +40,7 @@ class Product():
         self.__details = copy_from.get_details()
         self.__price = copy_from.get_price()
         self.__description = copy_from.get_description()
-        self.__image_url = copy_from.get_image_url()
+        self.__image_urls = copy_from.get_image_url()
         self.__review = copy_from.get_review()
         self.__article_id = copy_from.get_article_id()
         self.__category = copy_from.get_category()
@@ -70,23 +70,18 @@ class Product():
         self.__details = [item['validDesign'][0] for item in couch_product_data_json['product']['items']]
         self.__article_id = couch_product_data_json['product']['partNumber']
         self.__review = review if not review == "Review" else "N/A"
-        self.__image_url = "https://ikea.com" + couch_soup.findAll("img", id="productImg")[0]['src']
+        self.__image_urls = ["https://ikea.com" + item['images']['zoom'][0] for item in couch_product_data_json['product']['items']]
+        self.__design_and_images = dict(zip(self.__details, self.__image_urls))
 
     # GETTERS
     def get_name(self):
         return self.__name
-
-    def get_details(self):
-        return self.__details
 
     def get_price(self):
         return self.__price
 
     def get_description(self):
         return self.__description
-
-    def get_image_url(self):
-        return self.__image_url
 
     def get_review(self):
         return self.__review
@@ -96,6 +91,9 @@ class Product():
 
     def get_category(self):
         return self.__category
+
+    def get_design_and_images(self):
+        return self.__design_and_images
 
     # built-in functions
     # eq allows tests for equality with other products
@@ -111,10 +109,9 @@ class Product():
         return (
             f"Product with:\n \
             Name: {self.__name}\n \
-            Details: {self.__details}\n \
+            Options and Images: {self.__design_and_images}\n \
             Price: {self.__price}\n \
             Description: {self.__description}\n \
-            Main Image URL: {self.__image_url}\n \
             Review: {self.__review} Stars\n \
             Article ID: {self.__article_id}\n \
             Category: {self.__category}\n"
@@ -124,10 +121,9 @@ class Product():
         return (
             f"Product with:\n \
             Name: {self.__name}\n \
-            Details: {self.__details}\n \
+            Options and Images: {self.__design_and_images}\n \
             Price: {self.__price}\n \
             Description: {self.__description}\n \
-            Main Image URL: {self.__image_url}\n \
             Review: {self.__review} Stars\n \
             Article ID: {self.__article_id}\n \
             Category: {self.__category}\n"
