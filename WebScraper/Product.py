@@ -57,18 +57,17 @@ class Product():
             Product: product with details scraped from url
         """
         # load that string into a JSON and soup
-        couch_product_data_json, couch_soup = json_tools.get_product_data_from_url(
-            url_string)
+        couch_product_data_json, couch_soup = json_tools.get_product_data_from_url(url_string)
         smaller_chunk = couch_product_data_json['product']['items'][0]
-        review = couch_soup.findAll("a", class_="ratingsCount")[0].text
         # build product
         self.__name = smaller_chunk['name']
         self.__category = couch_soup.findAll(
             "meta", attrs={'name': 'IRWStats.categoryLocal'})[0]['content']
         self.__description = smaller_chunk['type']
         self.__price = smaller_chunk['prices']['normal']['priceNormal']['priceExclVat']
-        self.__details = [item['validDesign'][0] for item in couch_product_data_json['product']['items']]
+        self.__details = self.__description if not couch_product_data_json['product']['items'][0]['validDesign'] else [item['validDesign'][0] for item in couch_product_data_json['product']['items']]
         self.__article_id = couch_product_data_json['product']['partNumber']
+        review = couch_soup.findAll("a", class_="ratingsCount")[0].text
         self.__review = review if not review == "Review" else "N/A"
         self.__image_urls = ["https://ikea.com" + item['images']['zoom'][0] for item in couch_product_data_json['product']['items']]
         self.__design_and_images = dict(zip(self.__details, self.__image_urls))
@@ -102,6 +101,7 @@ class Product():
             other.get_name() == self.__name
             and other.get_description() == self.__description
             and other.get_price() == self.__price
+            and other.get_details() == self.__details
         )
 
     # representations of the product object
