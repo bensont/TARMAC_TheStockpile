@@ -1,11 +1,9 @@
 from .Product import Product
 
+
 class ProductBuilder:
 
-    @staticmethod
-    def product():
-        return ProductBuilder()
-
+    # initialize all fields to default
     def __init__(self):
         self.name = "N/A"
         self.details = "N/A"
@@ -16,6 +14,7 @@ class ProductBuilder:
         self.article_id = "N/A"
         self.category = "N/A"
 
+    # BUILDERS
     def with_name(self, name):
         self.name = name
         return self
@@ -48,5 +47,6 @@ class ProductBuilder:
         self.category = category
         return self
 
+    # BUILD PRODUCT FROM SELF
     def build(self):
-        return Product(product_builder = self)
+        return Product(product_builder=self)
