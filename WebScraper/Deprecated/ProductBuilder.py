@@ -1,3 +1,4 @@
+#DEPRECATED
 from .Product import Product
 
 
