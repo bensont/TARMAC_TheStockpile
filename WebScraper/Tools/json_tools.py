@@ -3,6 +3,7 @@ import re
 from . import url_tools
 
 
+#Return a tuple (JSON, Soup) from the URL given
 def get_json_and_soup_from_url(url_string):
     # turn that URL into soup
     couch_soup = url_tools.get_soup_from_url(url_string)
