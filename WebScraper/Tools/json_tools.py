@@ -2,9 +2,27 @@ import json
 import re
 from . import url_tools
 
+# Eventually want to add more functionality to this so that it makes a cache
+# of the JSON Files that it can load from instead of having to parse the html
+# every time...
 
-# Return a tuple (JSON, Soup) from the URL given
-def get_json_and_soup_from_url(url_string):
+
+def get_product_data_from_url(url_string):
+    """
+
+    Summary:
+        gets JSON and BS4 soup from url string for specific product
+        This is at the bottom of the webpage tree
+
+    Args:
+        url_string (str)
+
+    Returns:
+        (JSON, Soup):
+            JSON: json data from url
+            Soup: soup data from url
+
+    """
     # turn that URL into soup
     couch_soup = url_tools.get_soup_from_url(url_string)
     # get all of the scripts from said soup
