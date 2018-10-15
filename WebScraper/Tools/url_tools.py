@@ -6,7 +6,7 @@ import re
 
 cache_directory = "html_cache\\"
 
-def build_url_soup_list(category_url):
+def build_url_soup_list(category_url, num_products):
     """
     Summary:
         Make a list of soup of individual products pages from a category URL
@@ -34,13 +34,17 @@ def build_url_soup_list(category_url):
     #turn those soup ELEMENTS into FULL soup from the url of each individual product
     category_element_products_soups = three_col + last_col
     product_list = []
-    for element in category_element_products_soups:
+    for i in range(num_products):
+        if(i >= len(category_element_products_soups)):
+            break
+        element = category_element_products_soups[i]
         individual_product_url = element.findAll("a", class_="productLink")[0]['href']
         product_list.append(Product(url_string = "https://www.ikea.com" + individual_product_url))
     return product_list
 
 def build_url_list_from_txt_file(filename):
     """
+
     Summary:
         Make a string list of URLs read from a file
 
@@ -51,6 +55,10 @@ def build_url_list_from_txt_file(filename):
     Returns:
         List<String>:
             List of individual URL strings
+
+        Remarks:
+            ignores lines starting with #, treating them as comments
+
     """
     url_list = []
     with open(filename, "r", encoding="utf-8") as f:
