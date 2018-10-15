@@ -39,6 +39,26 @@ def build_url_soup_list(category_url):
         product_list.append(Product(url_string = "https://www.ikea.com" + individual_product_url))
     return product_list
 
+def build_url_list_from_txt_file(filename):
+    """
+    Summary:
+        Make a string list of URLs read from a file
+
+    Args:
+        filename (str):
+            .txt file that has a list of URLs separated by new lines
+
+    Returns:
+        List<String>:
+            List of individual URL strings
+    """
+    url_list = []
+    with open(filename, "r", encoding="utf-8") as f:
+        url_list = f.read().splitlines()
+    return [x for x in url_list if not x.startswith('#')]
+
+
+
 def get_soup_from_url(url_string):
     """
 

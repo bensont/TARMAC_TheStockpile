@@ -1,9 +1,6 @@
-# from ProductModels.ProductBuilder import ProductBuilder
-# from Product import Product
 from Tools import url_tools
-import traceback
-
-
+# import traceback
+import sys
 
 def remove_dupes(product_list):
     no_dupes = []
@@ -11,7 +8,6 @@ def remove_dupes(product_list):
         if p not in no_dupes:
             no_dupes.append(p)
     return no_dupes
-
 
 # Globals
 product_object_list = []
@@ -24,11 +20,10 @@ sleeper_url = "https://www.ikea.com/us/en/catalog/categories/departments/living_
 all_urls = []
 all_urls.append(couch_url)
 all_urls.append(sleeper_url)
-
+print(url_tools.build_url_list_from_txt_file(sys.argv[1]))
 # turn all of the URLs into soup and elements of those pages into soup
 for a_url in all_urls:
     full_individual_product_soups += url_tools.build_url_soup_list(a_url)
 
 full_individual_product_soups = remove_dupes(full_individual_product_soups)
-
 print(len(full_individual_product_soups))
