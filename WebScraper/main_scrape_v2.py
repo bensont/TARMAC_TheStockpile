@@ -1,5 +1,5 @@
 # from ProductModels.ProductBuilder import ProductBuilder
-from Product import Product
+# from Product import Product
 from Tools import url_tools
 import traceback
 
@@ -27,7 +27,7 @@ all_urls.append(sleeper_url)
 
 # turn all of the URLs into soup and elements of those pages into soup
 for a_url in all_urls:
-    full_individual_product_soups += build_url_soup_list(a_url)
+    full_individual_product_soups += url_tools.build_url_soup_list(a_url)
 
 full_individual_product_soups = remove_dupes(full_individual_product_soups)
 

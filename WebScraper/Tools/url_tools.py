@@ -1,5 +1,6 @@
 from urllib.request import urlopen as ureq
 from bs4 import BeautifulSoup as soup
+from .Product import Product
 import os.path
 import re
 
@@ -24,7 +25,7 @@ def build_url_soup_list(category_url):
     """
 
     #get soup from category page
-    category_soup = url_tools.get_soup_from_url(category_url)
+    category_soup = get_soup_from_url(category_url)
 
     #get soup ELEMENTS from that category
     three_col = category_soup.findAll("div", class_="threeColumn product ")
