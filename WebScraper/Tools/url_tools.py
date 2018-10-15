@@ -5,7 +5,38 @@ import re
 
 cache_directory = "html_cache\\"
 
+def build_url_soup_list(category_url):
+    """
+    Summary:
+        Make a list of soup of individual products pages from a category URL
 
+    Args:
+        category_url (str):
+            URL for a category of products, one level up from the individual products
+
+    Returns:
+        List<Soup>:
+            List containing the soup of all the individual products in a sub category
+
+    Usages:
+        Input -> url for the 'sofas' page containing all products categorized as a 'sofa'
+        Output -> list of individual product soups from all the sofas in URL
+    """
+
+    #get soup from category page
+    category_soup = url_tools.get_soup_from_url(category_url)
+
+    #get soup ELEMENTS from that category
+    three_col = category_soup.findAll("div", class_="threeColumn product ")
+    last_col = category_soup.findAll(
+        "div", class_="threeColumn product lastColumn")
+    #turn those soup ELEMENTS into FULL soup from the url of each individual product
+    category_element_products_soups = three_col + last_col
+    product_list = []
+    for element in category_element_products_soups:
+        individual_product_url = element.findAll("a", class_="productLink")[0]['href']
+        product_list.append(Product(url_string = "https://www.ikea.com" + individual_product_url))
+    return product_list
 
 def get_soup_from_url(url_string):
     """
