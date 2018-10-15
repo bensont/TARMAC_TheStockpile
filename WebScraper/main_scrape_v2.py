@@ -3,7 +3,6 @@ from Product import Product
 from Tools import url_tools
 import traceback
 
-
 def build_url_soup_list(category_url):
     """
     Summary:
@@ -63,12 +62,4 @@ for a_url in all_urls:
 
 full_individual_product_soups = remove_dupes(full_individual_product_soups)
 
-
-# get the data from the json and read it into a python JSON object
-# get URL first product
-# couch_url = "https://www.ikea.com" + \
-#     products_soup_list[1].findAll("a", class_="productLink")[0]['href']
-# current_product = Product(couch_url)
-#
-# print(current_product)
 print(len(full_individual_product_soups))
