@@ -18,4 +18,10 @@ for a_url in all_urls:
     full_individual_product_soups += url_tools.build_url_soup_list(a_url, 10)
 #remove duplicates and print the len of the product list
 full_individual_product_soups = remove_dupes(full_individual_product_soups)
-print(len(full_individual_product_soups))
+# print(len(full_individual_product_soups))
+#print out to csv
+with open("csvtest.tsv", "w", encoding = "utf-8") as f:
+    for product in full_individual_product_soups:
+        csv_list = product.to_CSV()
+        for line in csv_list:
+            f.write("%s\n" % line)

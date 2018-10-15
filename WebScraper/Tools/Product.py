@@ -2,6 +2,7 @@ from Tools import json_tools
 
 class Product():
 
+    #CONSTRUCTORS
     def __init__(self, url_string=None, copy_from=None):
         """
         Summary:
@@ -93,6 +94,22 @@ class Product():
 
     def get_design_and_images(self):
         return self.__design_and_images
+
+    #UTILITY
+    def to_CSV(self):
+        """
+
+        """
+        csv_rows = []
+        #if one liner, no Options
+        first_line = True
+        for key in self.__design_and_images:
+            if(first_line):
+                csv_rows.append(f"{self.__name}\t{self.__category}\t{self.__description}\t{self.__price}\t{self.__article_id}\t{self.__review}\t{key}\t{self.__design_and_images[key]}")
+                first_line = False
+            else:
+                csv_rows.append(f"\t\t\t\t\t\t{key}\t{self.__design_and_images[key]}")
+        return csv_rows
 
     # built-in functions
     # eq allows tests for equality with other products

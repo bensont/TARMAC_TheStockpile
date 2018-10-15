@@ -28,11 +28,13 @@ def build_url_soup_list(category_url, num_products):
     category_soup = get_soup_from_url(category_url)
 
     #get soup ELEMENTS from that category
+    # regex = re.compile('threeColumn product(.|\n)*lastColumn.*')
     three_col = category_soup.findAll("div", class_="threeColumn product ")
-    last_col = category_soup.findAll(
-        "div", class_="threeColumn product lastColumn")
+    # last_col = category_soup.findAll(
+        # "div", class_=regex)
     #turn those soup ELEMENTS into FULL soup from the url of each individual product
-    category_element_products_soups = three_col + last_col
+    category_element_products_soups = three_col
+    # category_element_products_soups = category_soup.findAll("div", _class=regex)
     product_list = []
     for i in range(num_products):
         if(i >= len(category_element_products_soups)):
