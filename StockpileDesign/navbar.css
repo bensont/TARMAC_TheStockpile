@@ -1,3 +1,9 @@
 .dropdown-menu.collapsing {
   display:block;
 }
+
+@media screen and (max-width: 767px){
+  .hidden-md {
+    visibility: hidden;
+  }
+}
