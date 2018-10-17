@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Stockpile Login Page</title>
+  <link rel="shortcut icon" type="image/PNG" href="chairlogo2.PNG" />
+  <link rel="stylesheet" href="NewAccount.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <style>
+  .fakeimg {
+      height: 200px;
+      background: #aaa;
+  }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>The Stockpile</h1>
+  <img class="img-fluid" src="tempLogo.jpg" alt="tempLogo" width="500" height="300">
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+  <a class="navbar-brand" href="SP_HOME.html">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Products
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Beds</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Chairs</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Lighting</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Matress</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Small Storage</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Sofa</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Table</a>
+	  <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Empty Slot</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="LoginPage.html">Account</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+  <!-- This is Maureen's code for the new account page. -->
+  <div id = "text1">
+    <h2>Making a new Account</h2>
+
+  <form class = "MakingNewAccount">
+    LoginID/UserName:<br>
+    <input type="text" name="username">
+    <br>
+    Email:<br>
+    <input type="text" name="Email">
+    <br>
+    Password:<br>
+    <input type="text" name="password">
+    <br>
+    Rewrite Password:<br>
+    <input type="text" name="password">
+  </form>
+
+  <p id="demo">You are now a user</p>
+
+  <script>
+  function myFunction() 
+  {
+      document.getElementById("demo").style.color = "Black";       
+  }
+  </script>
+
+  <button type="button" onclick="myFunction()">Click to be a user</button>
+  </div>
+  <div id = "text2">
+    <h2 class = "shift"></h2>
+    Address:<br>
+    <input type="text" name="Address">
+    <br>
+    City:<br>
+    <input type="text" name="City">
+    <br>
+    State/Province:<br>
+    <input type="text" name="StateProvince">
+    <br>
+    Country:<br>
+    <input type="text" name="Country">
+  </div>
+
+</body>
+</html>
