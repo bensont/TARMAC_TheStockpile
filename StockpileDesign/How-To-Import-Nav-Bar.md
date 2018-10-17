@@ -4,7 +4,6 @@
 The new NavBar is a standalone html file that can't be browsed by itself...  To get this element into a page you just follow some simple steps.  
 ***
 ## 1. Make sure you import the right files for everything!  
-***
 ### Stylesheets  
 Add these stylesheet imports to <head>
 ##### Bootstrap:  
