@@ -18,59 +18,91 @@
   </style>
 </head>
 <body>
-
+  <!-- Navigation Bar -->
+  <!-- expand-md means that once it gets to a medium device size, it expands to the full menu instead of the toggle button -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <!-- Logo/Home Button -->
+    <a href="#" class="navbar-brand">
+      <img class="img-responsive" src="https://i.imgur.com/LrvbS6Q.png" alt="The Stockpile Logo - Go to Home" height="50">
+    </a>
+    <!-- Toggle Button, shows up when the screen goes smaller than the expand size -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collapsible NavBar -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <!-- ml-auto pushes the navigation information to the right hand side -->
+      <ul class="navbar-nav ml-auto">
+        <!-- This level is items in the NavBar -->
+        <li class="nav-item dropdown">
+          <!-- Products Button
+          Data Toggle set to collapse for animation
+          This also required a small change in CSS that displays when collapsing -->
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="collapse" data-target="#dropdown-target">Products</a>
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu collapse" id="dropdown-target">
+            <!-- Links to Product Category Pages within Products Dropdown -->
+            <a class="dropdown-item" href="#" id="top-dropdown-item">Beds</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Chairs</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Lighting</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Mattresses</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Small Storage</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Sofas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" id="bottom-dropdown-item">Tables</a>
+          </div>
+        </li>
+        <!-- Contact Us Button -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+        <!-- User Account -->
+        <li class="nav-item">
+          <!-- If screen is medium or larger, display below -->
+          <a href="#" class="nav-link d-none d-md-block">
+            <i class="fas fa-user-alt"></i>
+          </a>
+          <!-- Else if screen is small or x-small, display below -->
+          <a class="nav-link d-md-none" href="#">
+            <i class="fas fa-user-alt"></i> Account
+          </a>
+        </li>
+        <!-- Shopping Cart -->
+        <li class="nav-item">
+          <!-- If screen is medium or larger, display below -->
+          <a href="#" class="nav-link d-none d-md-block">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+          <!-- Else if screen is small or x-small, display below -->
+          <a class="nav-link d-md-none" href="#">
+            <i class="fas fa-shopping-cart"></i> Shopping Cart
+          </a>
+        </li>
+        <!-- Search -->
+        <li>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Products">
+            <div class="input-group-append">
+              <button class="btn btn-outline-success type="button><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>The Stockpile</h1>
   <img class="img-fluid" src="tempLogo.jpg" alt="tempLogo" width="500" height="300">
 </div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-  <a class="navbar-brand" href="SP_HOME.html">Home</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Products
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Beds</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Chairs</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Lighting</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Matress</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Small Storage</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sofa</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Table</a>
-	  <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Empty Slot</a>
-        </div>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Contact Us</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="LoginPage.html">Account</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
   <!-- This is Maureen's code for the new account page. -->
   <div class = "container">
-    <h2>Making a new Account</h2>
+    <h2 class= "text-center">Create an Account</h2>
 
     <div class = "form-group">
       <label class="control-label col-sm-2" for="loginID">LoginID/Username:</label>
@@ -94,7 +126,7 @@
     </div>
 
     <div class = "form-group">
-      <label class="control-label col-sm-2" for="pwdTest">Rewrite the Password:</label>
+      <label class="control-label col-sm-4" for="pwdTest">Rewrite the Password:</label>
       <div>
         <input type = "password" class="form-control" id = "pwdTest" placeholder="Re-type Password">
       </div>
