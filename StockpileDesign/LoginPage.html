@@ -75,35 +75,32 @@
   https://www.w3schools.com/html/html_forms.asp
   -->
 
-<div id= "text1">
+<div class= "container">
     <h2 class = "LoginText">Login</h2>
 
-  <form class = "LoginArea">
-    First name:<br>
-    <input type="text" name="firstname">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname">
-  </form>
+    <div class = "form-group">
+      <label class="control-label col-sm-2" id = "test1" for="pwd">Username:</label>
+      <div>
+        <input type = "text" class="form-control" id = "pwd" placeholder="Type Username">
+      </div>
+    </div>
 
-  <p id="demo">You typed in the wrong password</p>
+    <div class = "form-group">
+      <label class="control-label col-sm-2" id = "test1" for="pwd">Password:</label>
+      <div>
+        <input type = "password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="myFunction()">Login</button>
+    <a href="NewAccount.html" class="btn btn-info" role="button">New Account?</a>
+    <p id="demo"></p>
 
-  <script>
-  function myFunction()
-  {
-      document.getElementById("demo").style.color = "red";
-      document.getElementById("demo").style.backgroundColor = "yellow";
-  }
-  </script>
-
-  <button type="button" onclick="myFunction()">Login</button>
-</div>
-
-<div id = "text2">
-  <h2 class = "NoAccount">No Account?</h2>
-  <input type="button" onclick="location.href='NewAccount.html';" value="Make a new Account" />
-  <!-- https://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link-->
-
+    <script>
+      function myFunction() 
+      {
+        document.getElementById("demo").innerHTML = "Hello World";
+      }
+    </script>
 </div>
 </body>
 </html>

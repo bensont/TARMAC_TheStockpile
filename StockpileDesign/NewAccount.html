@@ -69,48 +69,60 @@
 </nav>
 
   <!-- This is Maureen's code for the new account page. -->
-  <div id = "text1">
+  <div class = "container">
     <h2>Making a new Account</h2>
 
-  <form class = "MakingNewAccount">
-    LoginID/UserName:<br>
-    <input type="text" name="username">
-    <br>
-    Email:<br>
-    <input type="text" name="Email">
-    <br>
-    Password:<br>
-    <input type="text" name="password">
-    <br>
-    Rewrite Password:<br>
-    <input type="text" name="password">
-  </form>
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="loginID">LoginID/Username:</label>
+      <div>
+        <input type = "text" class="form-control" id = "loginID" placeholder="Username">
+      </div>
+    </div>
 
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="pwd">Email:</label>
+      <div>
+        <input type = "text" class="form-control" id = "pwd" placeholder="sample@sample.com">
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="pwd1">Password:</label>
+      <div>
+        <input type = "password" class="form-control" id = "pwd1" placeholder="Password">
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="pwdTest">Rewrite the Password:</label>
+      <div>
+        <input type = "password" class="form-control" id = "pwdTest" placeholder="Re-type Password">
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="Address">Address:</label>
+      <div>
+        <input type = "text" class="form-control" id = "Address" placeholder="Type Address">
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="StateProvince">State or Province:</label>
+      <div>
+        <input type = "text" class="form-control" id = "StateProvince" placeholder="Type State or Province you live in">
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label class="control-label col-sm-2" for="country">Country:</label>
+      <div>
+        <input type = "text" class="form-control" id = "country" placeholder="Type State or Province you live in">
+      </div>
+    </div>
+    <button type="button" class="btn btn-info">Make new Account</button>
   <p id="demo">You are now a user</p>
 
-  <script>
-  function myFunction() 
-  {
-      document.getElementById("demo").style.color = "Black";       
-  }
-  </script>
-
-  <button type="button" onclick="myFunction()">Click to be a user</button>
-  </div>
-  <div id = "text2">
-    <h2 class = "shift"></h2>
-    Address:<br>
-    <input type="text" name="Address">
-    <br>
-    City:<br>
-    <input type="text" name="City">
-    <br>
-    State/Province:<br>
-    <input type="text" name="StateProvince">
-    <br>
-    Country:<br>
-    <input type="text" name="Country">
-  </div>
 
 </body>
 </html>
