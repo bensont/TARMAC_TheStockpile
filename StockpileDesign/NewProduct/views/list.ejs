@@ -24,8 +24,8 @@
     <table border="0" width='60%'>
         <tr style='text-align:left; background-color:#CCC'>
             <th>Name</th>
-            <th>ImagePath</th>
-            <th>Price</th>
+            <!-- <th>ImagePath</th>
+            <th>Price</th> -->
         </tr>
         <% if (data) { %>
         <!-- Using a for-loop to loop over each row in the database.
@@ -33,14 +33,14 @@
         <% data.forEach(function(item){ %>
         <tr>
             <td>
-                <%= item.name %>
+              <a href="/<%= item.id %>"><%= item.name %></a>
             </td>
-            <td>
+            <!-- <td>
                 <%= item.imagepath %>
             </td>
             <td>
                 <%= item.price %>
-            </td>
+            </td> -->
         </tr>
         <% }) %>
         <% } %>
