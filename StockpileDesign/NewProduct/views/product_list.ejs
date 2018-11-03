@@ -1,6 +1,12 @@
 <!--Including Header and NavBar Partial-->
 <%- include ./layouts/header.ejs %>
 <%- include ./layouts/navbar.ejs %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">All Products</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Chairs</li>
+  </ol>
+</nav>
 
 <h1>Chairs</h1>
 <!--Using if-check to see if an error occurred and displaying appropriate message-->
