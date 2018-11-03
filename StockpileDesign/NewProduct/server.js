@@ -33,7 +33,7 @@ app.use(session({
 app.use(flash());
 
 //routes
-var index = require('./routes/product');
+var index = require('./routes/product_list');
 //var store = require('./routes/store');
 app.use('/', index);
 //app.use('/store', store);
