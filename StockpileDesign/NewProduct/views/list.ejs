@@ -1,0 +1,47 @@
+<html>
+
+<body>
+    <!--Using if-check to see if an error occurred and displaying appropriate message-->
+    <% if (messages.error) { %>
+    <p style="color:red">
+        <%- messages.error %>
+    </p>
+    <% } %>
+    <% if (messages.success) { %>
+    <p style="color:blue">
+        <%- messages.success %>
+    </p>
+    <% } %>
+
+    <script type="text/javascript">
+        var err = <%- JSON.stringify(messages) %>;
+        console.log(err);
+    </script>
+
+    <table border="0" width='60%'>
+        <tr style='text-align:left; background-color:#CCC'>
+            <th>Name</th>
+            <th>ImagePath</th>
+            <th>Price</th>
+        </tr>
+        <% if (data) { %>
+        <!-- Using a for-loop to loop over each row in the database.
+    The 'data' variable is passed from the store.js during the response.render function call -->
+        <% data.forEach(function(item){ %>
+        <tr>
+            <td>
+                <%= item.name %>
+            </td>
+            <td>
+                <%= item.imagepath %>
+            </td>
+            <td>
+                <%= item.price %>
+            </td>
+        </tr>
+        <% }) %>
+        <% } %>
+    </table>
+</body>
+
+</html>
