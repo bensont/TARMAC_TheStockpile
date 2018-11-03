@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  $('.header').load("navbar-raw.html");
+  $('.stockpile-navbar').load("navbar-raw.html");
 });
