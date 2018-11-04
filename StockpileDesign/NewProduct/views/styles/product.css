@@ -1,16 +1,39 @@
+.related-products-title {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.card-text {
+  float: right;
+}
+
+.product-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.image-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  height: 150px;
+}
+
 .with-image {
   padding-top: 0px;
   padding-bottom: 0px;
+  height: 150px;
+  display: table;
 }
 
 .related-products-image {
   float: right;
+  height: 85%;
 }
 
 .related-product-text {
   font-family: sans-serif;
   font: "Helvetica Neue";
-  line-height: 100px;
+  display: table-cell;
   vertical-align: middle;
 }
 

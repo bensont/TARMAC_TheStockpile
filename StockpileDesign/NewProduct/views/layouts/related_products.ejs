@@ -1,32 +1,25 @@
 <!-- Related Products -->
-<div class="col-2 side-bar">
-  <ul class="list-group list-group-flush">
-    <!-- Header -->
-    <li class="list-group-item">Related Products</li>
-    <!-- Products -->
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">LIDHULT</a>
-      <img class="related-products-image" src="https://www.ikea.com/us/en/images/products/lidhult-sectional-seat-black__0620223_PE689534_S4.JPG" alt="" width="100">
+<h1 class="font-weight-light related-products-title">Related Products</h1>
+<div class="card-deck">
+  <div class="row product-row">
+    <% var inRow = 0; %>
+    <% for (i = 0; i < data.length; i++) { %>
+    <% var item = data[i]; %>
+    <% if (item.id != id) { %>
+    <div class="card">
+      <img class="card-img-top" src="/Database_Images/<%= item.imagepath %>a.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/<%- item.id %>"><%= item.name %></a></h5>
+        <p class="card-text"><%= item.price.toFixed(2) %></p>
+      </div>
     </div>
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">GENEVAD</a>
-      <img class="related-products-image" src="https://www.ikea.com/PIAimages/0661559_PE711544_S3.JPG" alt="" width="100">
-    </div>
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">VALLENTUNA</a>
-      <img class="related-products-image" src="https://www.ikea.com/PIAimages/0624203_PE691735_S3.JPG" alt="" width="100">
-    </div>
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">LANDSKRONA</a>
-      <img class="related-products-image" src="https://www.ikea.com/PIAimages/0602354_PE680288_S3.JPG" alt="" width="100">
-    </div>
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">EKTORP</a>
-      <img class="related-products-image" src="https://www.ikea.com/PIAimages/0619738_PE689282_S3.JPG" alt="" width="100">
-    </div>
-    <div class="list-group-item with-image">
-      <a href="#" class="related-product-text">TIDAFORS</a>
-      <img class="related-products-image" src="https://www.ikea.com/PIAimages/0240019_PE379605_S3.JPG" alt="" width="100">
-    </div>
-  </ul>
+    <% inRow++; %>
+    <% } %>
+    <% if (inRow % 2 == 0) {%>
+      </div>
+      <div class="row product-row">
+    <% inRow = 0; %>
+    <% }%>
+    <% } %>
+  </div>
 </div>
