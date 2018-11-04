@@ -1,85 +1,95 @@
-<!--Including Header and NavBar Partial-->
-<%- include ./layouts/header.ejs %>
-<%- include ./layouts/navbar.ejs %>
-<!-- Breadcrumb -->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">All Products</a></li>
-        <li class="breadcrumb-item"><a href="/">Chairs</a></li>
-        <li class="breadcrumb-item active" aria-current="page">
-            <%= data[0].name %>
-        </li>
-    </ol>
-</nav>
-<h1>Chairs</h1>
-<!--Using if-check to see if an error occurred and displaying appropriate message-->
-<% if (messages.error) { %>
-<p style="color:red">
-    <%- messages.error %>
-</p>
-<% } %>
-<% if (messages.success) { %>
-<p style="color:blue">
-    <%- messages.success %>
-</p>
-<% } %>
+<html>
 
-<script type="text/javascript">
-    var err = <%- JSON.stringify(messages) %>;
-    console.log(err);
-</script>
+<head>
+    <%- include ./layouts/header.ejs %>
+    <link rel="stylesheet" href="./views/styles/product.css">
+</head>
 
-<table border="0" width='60%'>
-    <tr style='text-align:left; background-color:#CCC'>
-        <th>Name</th>
-        <th>ImagePath</th>
-        <th>Price</th>
-    </tr>
-    <% if (data) { %>
-    <!-- Using a for-loop to loop over each row in the database.
+<body>
+    <%- include ./layouts/navbar.ejs %>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">All Products</a></li>
+            <li class="breadcrumb-item"><a href="/">Chairs</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <%= data[0].name %>
+            </li>
+        </ol>
+    </nav>
+    <h1>Chairs</h1>
+    <!--Using if-check to see if an error occurred and displaying appropriate message-->
+    <% if (messages.error) { %>
+    <p style="color:red">
+        <%- messages.error %>
+    </p>
+    <% } %>
+    <% if (messages.success) { %>
+    <p style="color:blue">
+        <%- messages.success %>
+    </p>
+    <% } %>
+
+    <script type="text/javascript">
+        var err = <%- JSON.stringify(messages) %>;
+        console.log(err);
+    </script>
+
+    <!-- Related Products -->
+    <%- include ./layouts/related_products.ejs %>
+
+    <!-- Old stuff for testing below -->
+    <table border="0" width='60%'>
+        <tr style='text-align:left; background-color:#CCC'>
+            <th>Name</th>
+            <th>ImagePath</th>
+            <th>Price</th>
+        </tr>
+        <% if (data) { %>
+        <!-- Using a for-loop to loop over each row in the database.
     The 'data' variable is passed from the store.js during the response.render function call -->
-    <% data.forEach(function(item){ %>
-    <% if (item.id == id) { %>
-    <tr>
-        <td>
-            <%= item.name %>
-        </td>
-        <td>
-            <img src="/Database_Images/<%= item.imagepath %>" alt="A chair" width="600" height="400">
-        </td>
-        <td>
-            <%= item.price %>
-        </td>
-    </tr>
-    <% } %>
-    <% }) %>
-    <% } %>
-</table>
-<!-- Related Products -->
-<table border="0" width='60%'>
-    <tr style='text-align:left; background-color:#CCC'>
-        <th>Name</th>
-        <th>ImagePath</th>
-        <th>Price</th>
-    </tr>
-    <% if (data) { %>
-    <!-- Using a for-loop to loop over each row in the database.
+        <% data.forEach(function(item){ %>
+        <% if (item.id == id) { %>
+        <tr>
+            <td>
+                <%= item.name %>
+            </td>
+            <td>
+                <img src="/Database_Images/<%= item.imagepath %>" alt="A chair" width="600" height="400">
+            </td>
+            <td>
+                <%= item.price %>
+            </td>
+        </tr>
+        <% } %>
+        <% }) %>
+        <% } %>
+    </table>
+    <!-- Related Products -->
+    <table border="0" width='60%'>
+        <tr style='text-align:left; background-color:#CCC'>
+            <th>Name</th>
+            <th>ImagePath</th>
+            <th>Price</th>
+        </tr>
+        <% if (data) { %>
+        <!-- Using a for-loop to loop over each row in the database.
     The 'data' variable is passed from the store.js during the response.render function call -->
-    <% data.forEach(function(item){ %>
-    <tr>
-        <td>
-            <%= item.name %>
-        </td>
-        <td>
-            <img src="/Database_Images/<%= item.imagepath %>" alt="A chair" width="600" height="400">
-        </td>
-        <td>
-            <%= item.price %>
-        </td>
-    </tr>
-    <% }) %>
-    <% } %>
-</table>
+        <% data.forEach(function(item){ %>
+        <tr>
+            <td>
+                <%= item.name %>
+            </td>
+            <td>
+                <img src="/Database_Images/<%= item.imagepath %>" alt="A chair" width="600" height="400">
+            </td>
+            <td>
+                <%= item.price %>
+            </td>
+        </tr>
+        <% }) %>
+        <% } %>
+    </table>
 </body>
 
 </html>
