@@ -9,8 +9,14 @@
     <div class="card">
       <img class="card-img-top" src="/Database_Images/<%= item.image %>" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title"><a href="/<%= item.type %>/<%- item.id %>"><%= item.name %></a></h5>
-        <p class="card-text"><%= item.price.toFixed(2) %></p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h5 class="card-title"><a href="/<%= item.type %>/<%- item.id %>"><%= item.name %></a></h5>
+          </li>
+          <li class="list-group-item">
+            <p class="card-text"><%= item.price.toFixed(2) %></p>
+          </li>
+        </ul>
       </div>
     </div>
     <% inRow++; %>
