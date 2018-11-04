@@ -36,24 +36,47 @@ app.get('/(:id)', function(request, response) {
   // that returns all the rows and columns in the 'store' table
   var itemId = request.params.id;
   var query = 'SELECT * FROM all_products';
+  var current_query = 'SELECT * FROM all_products WHERE id=' + itemId;
 
-  db.any(query)
-    .then(function(rows) {
-      // render views/store/list.ejs template file
+  db.multi('SELECT * FROM all_products;SELECT * FROM all_products WHERE id=' + itemId)
+    .then(all_data => {
+      console.log(all_data);
       response.render('product', {
         title: 'Store listing',
-        data: rows,
+        data: all_data[0],
+        individual_data: all_data[1][0],
         id: itemId
       })
     })
-    .catch(function(err) {
+    .catch(err => {
       console.log("error getting db");
       // display error message in case an error
       request.flash('error', err);
       response.render('product', {
         title: 'Store listing',
         data: '',
-        id: -1
+        id: -1,
+        individual_data: ''
       })
-    })
+    });
+  //
+  // db.any(query)
+  //   .then(function(rows) {
+  //     // render views/store/list.ejs template file
+  //     response.render('product', {
+  //       title: 'Store listing',
+  //       data: rows,
+  //       id: itemId
+  //     })
+  //   })
+  //   .catch(function(err) {
+  //     console.log("error getting db");
+  //     // display error message in case an error
+  //     request.flash('error', err);
+  //     response.render('product', {
+  //       title: 'Store listing',
+  //       data: '',
+  //       id: -1
+  //     })
+  //   })
 });
