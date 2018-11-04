@@ -3,17 +3,45 @@ var db = require('../database');
 var app = express();
 module.exports = app;
 
-//route for the product list
+//default home route, responds with a list of all products
 app.get('/', function(request, response) {
   // response.render('product', {title: 'Lab 9 - Integration using Node.js'})
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
-  var query = 'SELECT * FROM products_exact_copy';
+  var query = 'SELECT DISTINCT type FROM products_exact_copy';
 
   db.any(query)
     .then(function(rows) {
       // render views/store/list.ejs template file
+      response.render('all_products_list.ejs', {
+        title: 'Store listing',
+        data: rows
+      })
+    })
+    .catch(function(err) {
+      console.log("error getting db");
+      // display error message in case an error
+      request.flash('error', err);
       response.render('product_list', {
+        title: 'Store listing',
+        data: ''
+      })
+    })
+});
+
+//route for a category page
+//default home route, responds with a list of all products
+app.get('/:category', function(request, response) {
+  // response.render('product', {title: 'Lab 9 - Integration using Node.js'})
+  // TODO: Initialize the query variable with a SQL query
+  // that returns all the rows and columns in the 'store' table
+  var itemCategory = request.params.category;
+  var query = "SELECT * FROM products_exact_copy WHERE type='" + itemCategory + "'";
+
+  db.any(query)
+    .then(function(rows) {
+      // render views/store/list.ejs template file
+      response.render('product_list.ejs', {
         title: 'Store listing',
         data: rows
       })
@@ -30,7 +58,7 @@ app.get('/', function(request, response) {
 });
 
 //route for the individual product
-app.get('/(:id)', function(request, response) {
+app.get('/:category/:id', function(request, response) {
   // response.render('product', {title: 'Lab 9 - Integration using Node.js'})
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
@@ -41,6 +69,7 @@ app.get('/(:id)', function(request, response) {
   db.multi(query + ';' + current_query)
     .then(all_data => {
       console.log(all_data[1][0]);
+      console.log(all_data[0]);
       response.render('product', {
         title: 'Store listing',
         data: all_data[0],
@@ -49,7 +78,8 @@ app.get('/(:id)', function(request, response) {
       })
     })
     .catch(err => {
-      console.log("error getting db");
+      console.log("error getting db for individual product");
+      console.log(itemId, request.params.category);
       // display error message in case an error
       request.flash('error', err);
       response.render('product', {
@@ -59,24 +89,4 @@ app.get('/(:id)', function(request, response) {
         individual_data: ''
       })
     });
-  //
-  // db.any(query)
-  //   .then(function(rows) {
-  //     // render views/store/list.ejs template file
-  //     response.render('product', {
-  //       title: 'Store listing',
-  //       data: rows,
-  //       id: itemId
-  //     })
-  //   })
-  //   .catch(function(err) {
-  //     console.log("error getting db");
-  //     // display error message in case an error
-  //     request.flash('error', err);
-  //     response.render('product', {
-  //       title: 'Store listing',
-  //       data: '',
-  //       id: -1
-  //     })
-  //   })
 });

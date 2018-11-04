@@ -2,7 +2,7 @@
 
 <head>
   <%- include ./layouts/header.ejs %>
-  <link rel="stylesheet" href="./views/styles/related_products.css">
+  <link rel="stylesheet" href="/views/styles/related_products.css">
 </head>
 
 <body>
@@ -10,14 +10,13 @@
   <!-- Breadcrumb -->
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">All Products</a></li>
-      <li class="breadcrumb-item"><a href="/">Chairs</a></li>
+      <li class="breadcrumb-item"><a href="/">Products</a></li>
+      <li class="breadcrumb-item"><a href="/<%= individual_data.type %>"><%= individual_data.type %></a></li>
       <li class="breadcrumb-item active" aria-current="page">
         <%= individual_data.name %>
       </li>
     </ol>
   </nav>
-  <h1>Chairs</h1>
   <!--Using if-check to see if an error occurred and displaying appropriate message-->
   <% if (messages.error) { %>
   <p style="color:red">

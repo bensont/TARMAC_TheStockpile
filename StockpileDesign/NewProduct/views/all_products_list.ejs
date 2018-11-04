@@ -7,12 +7,11 @@
 <%- include ./layouts/navbar.ejs %>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Products</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%= data[0].type %></li>
+    <li class="breadcrumb-item active" aria-current="page">Products</li>
   </ol>
 </nav>
 
-<h1><%= data[0].type %></h1>
+<h1>All Products</h1>
 <!--Using if-check to see if an error occurred and displaying appropriate message-->
 <% if (messages.error) { %>
 <p style="color:red">
@@ -42,8 +41,8 @@
   <% data.forEach(function(item){ %>
   <tr>
     <td>
-      <a href="/<%= item.type %>/<%= item.id %>">
-        <%= item.name %></a>
+      <a href="/<%= item.type %>">
+        <%= item.type %></a>
     </td>
     <!-- <td>
                 <%= item.imagepath %>

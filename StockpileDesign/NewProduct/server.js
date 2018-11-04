@@ -39,9 +39,10 @@ app.use(flash());
 //routes
 var chair_list = require('./routes/product_routes');
 //var store = require('./routes/store');
-app.use('/', chair_list);
 app.use(express.static('./'));
-// app.use(express.static('Database_Images'));
+app.use('/', chair_list);
+// app.use(express.static('./'));
+
 
 //app.use('/store', store);
 
