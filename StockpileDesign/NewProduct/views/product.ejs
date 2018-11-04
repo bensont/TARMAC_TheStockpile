@@ -2,7 +2,7 @@
 
 <head>
   <%- include ./layouts/header.ejs %>
-  <link rel="stylesheet" href="./views/styles/product.css">
+  <link rel="stylesheet" href="./views/styles/related_products.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
       <li class="breadcrumb-item"><a href="#">All Products</a></li>
       <li class="breadcrumb-item"><a href="/">Chairs</a></li>
       <li class="breadcrumb-item active" aria-current="page">
-        <%= data[0].name %>
+        <%= individual_data.name %>
       </li>
     </ol>
   </nav>
@@ -41,6 +41,9 @@
       <div class="col-1"></div>
       <div class="col-2 related-products">
         <%- include ./layouts/related_products.ejs %>
+      </div>
+      <div class="col image-carousel">
+        <%- include ./layouts/image_carousel.ejs %>
       </div>
     </div>
   </div>
