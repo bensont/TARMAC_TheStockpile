@@ -68,8 +68,6 @@ app.get('/:category/:id', function(request, response) {
 
   db.multi(query + ';' + current_query)
     .then(all_data => {
-      console.log(all_data[1][0]);
-      console.log(all_data[0]);
       response.render('product', {
         title: 'Store listing',
         data: all_data[0],
