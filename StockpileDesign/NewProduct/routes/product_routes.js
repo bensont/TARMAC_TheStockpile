@@ -8,7 +8,7 @@ app.get('/', function(request, response) {
   // response.render('product', {title: 'Lab 9 - Integration using Node.js'})
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
-  var query = 'SELECT * FROM all_products';
+  var query = 'SELECT * FROM products_exact_copy';
 
   db.any(query)
     .then(function(rows) {
@@ -35,12 +35,12 @@ app.get('/(:id)', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemId = request.params.id;
-  var query = 'SELECT * FROM all_products';
-  var current_query = 'SELECT * FROM all_products WHERE id=' + itemId;
+  var query = 'SELECT * FROM products_exact_copy';
+  var current_query = 'SELECT * FROM products_exact_copy WHERE id=' + itemId;
 
-  db.multi('SELECT * FROM all_products;SELECT * FROM all_products WHERE id=' + itemId)
+  db.multi(query + ';' + current_query)
     .then(all_data => {
-      console.log(all_data);
+      console.log(all_data[1][0]);
       response.render('product', {
         title: 'Store listing',
         data: all_data[0],
