@@ -35,14 +35,15 @@ app.get('/(:id)', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemId = request.params.id;
-  var query = 'SELECT * FROM all_products WHERE id=' + itemId;
+  var query = 'SELECT * FROM all_products';
 
   db.any(query)
     .then(function(rows) {
       // render views/store/list.ejs template file
       response.render('product', {
         title: 'Store listing',
-        data: rows
+        data: rows,
+        id: itemId
       })
     })
     .catch(function(err) {
@@ -51,7 +52,8 @@ app.get('/(:id)', function(request, response) {
       request.flash('error', err);
       response.render('product', {
         title: 'Store listing',
-        data: ''
+        data: '',
+        id: -1
       })
     })
 });
