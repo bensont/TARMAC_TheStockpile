@@ -9,7 +9,7 @@
     <div class="card">
       <img class="card-img-top" src="/Database_Images/<%= item.image %>" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title"><a href="/<%- item.id %>"><%= item.name %></a></h5>
+        <h5 class="card-title"><a href="/<%= item.type %>/<%- item.id %>"><%= item.name %></a></h5>
         <p class="card-text"><%= item.price.toFixed(2) %></p>
       </div>
     </div>
