@@ -1,0 +1,43 @@
+<!-- Product Info -->
+  <!-- name and price -->
+  <div class="row product-info-row">
+    <div class="col"></div>
+    <!-- name -->
+    <div class="col" id="product-name">
+      <b> <%= individual_data.name %> </b>
+    </div>
+    <!-- price -->
+    <div class="col" id="product-price">
+      <%= individual_data.price %>
+    </div>
+    <div class="col"></div>
+  </div>
+  <!-- Product details changes with options selected -->
+  <div class="row product-info-row" id="product-details">
+  </div>
+  <!-- description of the product -->
+  <div class="row product-info-row">
+    Be prepared – your friends may stay longer than you expected. The thick pocket-spring cushions with a memory foam layer and high armrests make NOCKEBY sofa invitingly comfortable.
+  </div>
+  <div class="row product-info-row">
+    <label for="coverSelect">Cover</label>
+    <select class="form-control" id="coverSelect">
+      <option>Tallmyra Rust</option>
+      <option>Tallmyra White/Black</option>
+    </select>
+  </div>
+  <div class="row product-info-row">
+    <label for="legsSelect">Legs</label>
+    <select class="form-control" id="legsSelect" name="legsSelect">
+      <option>Chrome Plated</option>
+      <option>Wood</option>
+    </select>
+  </div>
+  <div class="row product-info-row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-outline-success" id="checkout-button">Add to Cart</button>
+    </div>
+  </div>
