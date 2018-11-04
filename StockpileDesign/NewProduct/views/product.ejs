@@ -46,59 +46,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Old stuff for testing below -->
-  <table border="0" width='60%'>
-    <tr style='text-align:left; background-color:#CCC'>
-      <th>Name</th>
-      <th>ImagePath</th>
-      <th>Price</th>
-    </tr>
-    <% if (data) { %>
-    <!-- Using a for-loop to loop over each row in the database.
-    The 'data' variable is passed from the store.js during the response.render function call -->
-    <% data.forEach(function(item){ %>
-    <% if (item.id == id) { %>
-    <tr>
-      <td>
-        <%= item.name %>
-      </td>
-      <td>
-        <img src="/Database_Images/<%= item.image %>" alt="A chair" width="600" height="400">
-      </td>
-      <td>
-        <%= item.price %>
-      </td>
-    </tr>
-    <% } %>
-    <% }) %>
-    <% } %>
-  </table>
-  <!-- Related Products -->
-  <table border="0" width='60%'>
-    <tr style='text-align:left; background-color:#CCC'>
-      <th>Name</th>
-      <th>ImagePath</th>
-      <th>Price</th>
-    </tr>
-    <% if (data) { %>
-    <!-- Using a for-loop to loop over each row in the database.
-    The 'data' variable is passed from the store.js during the response.render function call -->
-    <% data.forEach(function(item){ %>
-    <tr>
-      <td>
-        <%= item.name %>
-      </td>
-      <td>
-        <img src="/Database_Images/<%= item.imagepath %>a.jpg" alt="A chair" width="600" height="400">
-      </td>
-      <td>
-        <%= item.price %>
-      </td>
-    </tr>
-    <% }) %>
-    <% } %>
-  </table>
 </body>
 
 </html>
