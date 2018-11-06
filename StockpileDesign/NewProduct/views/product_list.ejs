@@ -8,11 +8,11 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Products</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%= data[0].type %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%- category %></li>
   </ol>
 </nav>
 
-<h1><%= data[0].type %></h1>
+<h1><%= category %></h1>
 <!--Using if-check to see if an error occurred and displaying appropriate message-->
 <% if (messages.error) { %>
 <p style="color:red">

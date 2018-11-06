@@ -43,7 +43,8 @@ app.get('/:category', function(request, response) {
       // render views/store/list.ejs template file
       response.render('product_list.ejs', {
         title: 'Store listing',
-        data: rows
+        data: rows,
+        category: itemCategory
       })
     })
     .catch(function(err) {
