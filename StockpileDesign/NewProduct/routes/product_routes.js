@@ -29,6 +29,11 @@ app.get('/', function(request, response) {
     })
 });
 
+// cart route
+app.get('/cart', function(request, response) {
+  response.render('cart.ejs')
+});
+
 //route for a category page
 //default home route, responds with a list of all products
 app.get('/:category', function(request, response) {
