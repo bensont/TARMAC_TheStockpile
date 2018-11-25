@@ -9,13 +9,22 @@ app.get('/', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var query = 'SELECT DISTINCT type FROM products_exact_copy';
+  var chair_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'Chair\'';
+  var table_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'table\'';
+  var dresser_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'dresser\'';
+  var mirror_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'mirror\'';
+  var lighting_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'lighting\'';
 
-  db.any(query)
-    .then(function(rows) {
-      // render views/store/list.ejs template file
+  db.multi(query + ';' + chair_image_query + ";" + table_image_query + ";" + dresser_image_query + ";" + mirror_image_query + ";" + lighting_image_query)
+    .then(all_data => {
       response.render('all_products_list.ejs', {
         title: 'Store listing',
-        data: rows
+        data: all_data[0],
+        image_data: { 'Chair': all_data[1],
+                      'table': all_data[2],
+                      'dresser': all_data[3],
+                      'mirror': all_data[4],
+                      'lighting': all_data[5]},
       })
     })
     .catch(function(err) {
@@ -24,9 +33,10 @@ app.get('/', function(request, response) {
       request.flash('error', err);
       response.render('product_list', {
         title: 'Store listing',
-        data: ''
+        data: '',
+        image_data: ''
       })
-    })
+    });
 });
 
 // cart route
