@@ -8,12 +8,12 @@ app.get('/', function(request, response) {
   // response.render('product', {title: 'Lab 9 - Integration using Node.js'})
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
-  var query = 'SELECT DISTINCT type FROM products_exact_copy';
-  var chair_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'Chair\'';
-  var table_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'table\'';
-  var dresser_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'dresser\'';
-  var mirror_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'mirror\'';
-  var lighting_image_query = 'SELECT Image FROM products_exact_copy WHERE Type = \'lighting\'';
+  var query = 'SELECT DISTINCT type FROM products';
+  var chair_image_query = 'SELECT Image FROM products WHERE Type = \'Chair\'';
+  var table_image_query = 'SELECT Image FROM products WHERE Type = \'table\'';
+  var dresser_image_query = 'SELECT Image FROM products WHERE Type = \'dresser\'';
+  var mirror_image_query = 'SELECT Image FROM products WHERE Type = \'mirror\'';
+  var lighting_image_query = 'SELECT Image FROM products WHERE Type = \'lighting\'';
 
   db.multi(query + ';' + chair_image_query + ";" + table_image_query + ";" + dresser_image_query + ";" + mirror_image_query + ";" + lighting_image_query)
     .then(all_data => {
@@ -51,7 +51,7 @@ app.get('/:category', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemCategory = request.params.category;
-  var query = "SELECT * FROM products_exact_copy WHERE type='" + itemCategory + "'";
+  var query = "SELECT * FROM products WHERE type='" + itemCategory + "'";
 
   db.any(query)
     .then(function(rows) {
@@ -79,8 +79,8 @@ app.get('/:category/:id', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemId = request.params.id;
-  var query = 'SELECT * FROM products_exact_copy';
-  var current_query = 'SELECT * FROM products_exact_copy WHERE id=' + itemId;
+  var query = 'SELECT * FROM products';
+  var current_query = 'SELECT * FROM products WHERE id=' + itemId;
 
   db.multi(query + ';' + current_query)
     .then(all_data => {
