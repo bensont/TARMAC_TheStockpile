@@ -6,76 +6,75 @@
 -- -----------------------------------------------------
 -- Schema theStockpile
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `theStockpile` DEFAULT CHARACTER SET utf8 ;
-USE `theStockpile` ;
+CREATE DATABASE thestockpile;
 
 -- -----------------------------------------------------
--- Table `theStockpile`.`Users`
+-- Table 'theStockpile'.'Users'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `theStockpile`.`Users` (
-  `userID` INT NOT NULL AUTO_INCREMENT,
-  `loginID` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `PermissionsLevel` VARCHAR(45) NOT NULL,
-  `StreetAddress` VARCHAR(45) NOT NULL,
-  `City` VARCHAR(45) NOT NULL,
-  `State` VARCHAR(45) NOT NULL,
-  `ZipCode` INT NOT NULL,
-  `DeliveryInstructions` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`userID`)
+CREATE TABLE IF NOT EXISTS Users (
+  userID SERIAL,
+  loginID VARCHAR(45) NOT NULL,
+  password VARCHAR(32) NOT NULL,
+  PermissionsLevel VARCHAR(45) NOT NULL,
+  StreetAddress VARCHAR(45) NOT NULL,
+  City VARCHAR(45) NOT NULL,
+  State VARCHAR(45) NOT NULL,
+  ZipCode INT NOT NULL,
+  DeliveryInstructions VARCHAR(45) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  create_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (userID)
 );
 
 
 -- -----------------------------------------------------
--- Table `theStockpile`.`Products`
+-- Table 'theStockpile'.'Products'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `theStockpile`.`Products` (
-  `ProductID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NOT NULL,
-  `Brand` VARCHAR(45) NOT NULL,
-  `Type` VARCHAR(45) NOT NULL,
-  `Cost` DECIMAL(6,2) NOT NULL,
-  `Material` VARCHAR(45) NOT NULL,
-  `Image` VARCHAR(45) NOT NULL,
-  `Image2` VARCHAR(45) NOT NULL,
-  `Image3` VARCHAR(45) NOT NULL,
-  `Discription` VARCHAR(200) NOT NULL,
-  `Dimensions` VARCHAR(45) NOT NULL,
-  `Stock` INT NOT NULL,
-  `UserOrderProduct_UserID` INT,
-  PRIMARY KEY (`ProductID`)
+CREATE TABLE IF NOT EXISTS Products (
+  ProductID SERIAL,
+  Name VARCHAR(45) NOT NULL,
+  Brand VARCHAR(45) NOT NULL,
+  Type VARCHAR(45) NOT NULL,
+  Cost DECIMAL(6,2) NOT NULL,
+  Material VARCHAR(45) NOT NULL,
+  Image VARCHAR(45) NOT NULL,
+  Image2 VARCHAR(45) NOT NULL,
+  Image3 VARCHAR(45) NOT NULL,
+  Description VARCHAR(200) NOT NULL,
+  Dimensions VARCHAR(45) NOT NULL,
+  Stock INT NOT NULL,
+  UserOrderProduct_UserID INT,
+  PRIMARY KEY (ProductID)
 );
 
 
 -- -----------------------------------------------------
--- Table `theStockpile`.`Orders`
+-- Table 'theStockpile'.'Orders'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `theStockpile`.`Orders` (
-  `OrderID` INT NOT NULL AUTO_INCREMENT,
-  `UserID` VARCHAR(45) NOT NULL,
-  `TotalCost` DECIMAL(6,2) NOT NULL,
-  `Discounts` DECIMAL(6,2) NOT NULL,
-  `Timestamp` TIME NOT NULL,
-  `Status` VARCHAR(45) NOT NULL,
-  `TotalQuantity` INT NOT NULL,
-  `UserOrderProduct_UserID` INT NOT NULL,
-  PRIMARY KEY (`OrderID`)
+CREATE TABLE IF NOT EXISTS Orders (
+  OrderID SERIAL,
+  UserID VARCHAR(45) NOT NULL,
+  TotalCost DECIMAL(6,2) NOT NULL,
+  Discounts DECIMAL(6,2) NOT NULL,
+  Timestamp TIME NOT NULL,
+  Status VARCHAR(45) NOT NULL,
+  TotalQuantity INT NOT NULL,
+  UserOrderProduct_UserID INT NOT NULL,
+  PRIMARY KEY (OrderID)
 );
 
 
 -- -----------------------------------------------------
--- Table `theStockpile`.`OrderProduct`
+-- Table 'theStockpile'.'OrderProduct'
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `theStockpile`.`OrderProduct` (
-  `Products_ProductID` INT NOT NULL,
-  `Orders_OrderID` INT NOT NULL,
-  `Quantity` INT NOT NULL,
-  `Cost` DECIMAL(6,2),
-  `DiscountCost` DECIMAL(6,2) NOT NULL,
-  `Users_userID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Products_ProductID`, `Orders_OrderID`)
+CREATE TABLE IF NOT EXISTS OrderProduct (
+  Products_ProductID INT NOT NULL,
+  Orders_OrderID INT NOT NULL,
+  Quantity INT NOT NULL,
+  Cost DECIMAL(6,2),
+  DiscountCost DECIMAL(6,2) NOT NULL,
+  Users_userID VARCHAR(45) NOT NULL,
+  PRIMARY KEY (Products_ProductID, Orders_OrderID)
 );
 
 INSERT INTO Users (loginID, password, PermissionsLevel, StreetAddress, City, State, ZipCode, DeliveryInstructions, email)
@@ -91,7 +90,7 @@ VALUES ('admin','password','admin','54 Red Street','New York City','New York', 1
 ('Logan Wilson','wolverine','customer','1407 Graymalkin Lane','Salem Center','New York', 10560,'Drop on porch', 'wolverine@marvelheroes.org');
 
 
-INSERT INTO Products (Name, Brand, Type, Cost, Material, Image, Image2, Image3, Discription, Dimensions, Stock)
+INSERT INTO Products (Name, Brand, Type, Cost, Material, Image, Image2, Image3, Description, Dimensions, Stock)
 VALUES ('Classic','Good Wood', 'Chair', 169.00, 'Oak', 'chair2a.jpg', 'chair2b.jpg', 'chair2c.jpg', 'A beautifully crafted chair.', '25 x 29.5 x 31 inches', 5),
 ('Classy Classic','Custom Crafts', 'Chair', 199.99, 'Oak/Metal', 'chair3a.jpg''', 'chair3b.jpg', 'chair3c.jpg', 'A chair superior to any bar stool.', '25.5 x 30 x 30.5 inches', 5),
 ('Royal Bar','Encono-ture', 'Chair', 69.00, 'Pine', 'chair1a.jpg', 'chair1b.jpg', 'chair1c.jpg', 'A basic, but functional chiar', '26 x 30 x 31 inches', 5),
