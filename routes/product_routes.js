@@ -51,11 +51,13 @@ app.get('/:category', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemCategory = request.params.category;
+  console.log('product routes 54: itemCategory: ' + itemCategory);
   var query = "SELECT * FROM products WHERE type='" + itemCategory + "'";
 
   db.any(query)
-    .then(function(rows) {
+    .then(rows => {
       // render views/store/list.ejs template file
+      console.log('product routes 60: query return ' + rows)
       response.render('product_list.ejs', {
         title: 'Store listing',
         data: rows,
