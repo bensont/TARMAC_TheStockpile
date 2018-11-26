@@ -10,10 +10,10 @@ app.get('/', function(request, response) {
   // that returns all the rows and columns in the 'store' table
   var query = 'SELECT DISTINCT type FROM products';
   var chair_image_query = 'SELECT Image FROM products WHERE Type = \'Chair\'';
-  var table_image_query = 'SELECT Image FROM products WHERE Type = \'table\'';
-  var dresser_image_query = 'SELECT Image FROM products WHERE Type = \'dresser\'';
-  var mirror_image_query = 'SELECT Image FROM products WHERE Type = \'mirror\'';
-  var lighting_image_query = 'SELECT Image FROM products WHERE Type = \'lighting\'';
+  var table_image_query = 'SELECT Image FROM products WHERE Type = \'Table\'';
+  var dresser_image_query = 'SELECT Image FROM products WHERE Type = \'Dresser\'';
+  var mirror_image_query = 'SELECT Image FROM products WHERE Type = \'Mirror\'';
+  var lighting_image_query = 'SELECT Image FROM products WHERE Type = \'Lighting\'';
 
   db.multi(query + ';' + chair_image_query + ";" + table_image_query + ";" + dresser_image_query + ";" + mirror_image_query + ";" + lighting_image_query)
     .then(all_data => {
