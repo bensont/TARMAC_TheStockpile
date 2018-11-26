@@ -47,7 +47,7 @@ app.use('/', chair_list);
 //app.use('/store', store);
 
 //start server on port 4000
-var port = 4000;
+var port = process.env.PORT;
 app.listen(port, function() {
   console.log('Server running on http://localhost:' + port)
 });
