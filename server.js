@@ -47,9 +47,9 @@ app.use('/', chair_list);
 //app.use('/store', store);
 
 //local
-var port = 4000;
+// var port = 4000;
 //heroku
-// var port = process.env.PORT;
+var port = process.env.PORT;
 app.listen(port, function() {
   console.log('Server running on http://localhost:' + port)
 });
