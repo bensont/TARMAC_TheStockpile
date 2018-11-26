@@ -51,13 +51,11 @@ app.get('/:category', function(request, response) {
   // TODO: Initialize the query variable with a SQL query
   // that returns all the rows and columns in the 'store' table
   var itemCategory = request.params.category;
-  console.log('product routes 54: itemCategory: ' + itemCategory);
   var query = "SELECT * FROM products WHERE type='" + itemCategory + "'";
 
   db.any(query)
     .then(rows => {
       // render views/store/list.ejs template file
-      console.log('product routes 60: query return ' + rows)
       response.render('product_list.ejs', {
         title: 'Store listing',
         data: rows,
@@ -82,7 +80,7 @@ app.get('/:category/:id', function(request, response) {
   // that returns all the rows and columns in the 'store' table
   var itemId = request.params.id;
   var query = 'SELECT * FROM products';
-  var current_query = 'SELECT * FROM products WHERE id=' + itemId;
+  var current_query = 'SELECT * FROM products WHERE productid=' + itemId;
 
   db.multi(query + ';' + current_query)
     .then(all_data => {

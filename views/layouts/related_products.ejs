@@ -5,16 +5,16 @@
     <% var inRow = 0; %>
     <% for (i = 0; i < data.length; i++) { %>
     <% var item = data[i]; %>
-    <% if (item.id != id && item.type == individual_data.type) { %>
+    <% if (item.productid != id && item.type == individual_data.type) { %>
     <div class="card">
       <img class="card-img-top" src="/Database_Images/<%= item.image %>" alt="Card image cap">
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <p class="card-title"><a href="/<%= item.type %>/<%- item.id %>"><%= item.name %></a></p>
+            <p class="card-title"><a href="/<%= item.type %>/<%- item.productid %>"><%= item.name %></a></p>
           </li>
           <li class="list-group-item">
-            <p class="card-text"><%= item.price.toFixed(2) %></p>
+            <p class="card-text"><%= item.cost %></p>
           </li>
         </ul>
       </div>
