@@ -21,10 +21,10 @@ app.get('/', function(request, response) {
         title: 'Store listing',
         data: all_data[0],
         image_data: { 'Chair': all_data[1],
-                      'table': all_data[2],
-                      'dresser': all_data[3],
-                      'mirror': all_data[4],
-                      'lighting': all_data[5]},
+                      'Table': all_data[2],
+                      'Dresser': all_data[3],
+                      'Mirror': all_data[4],
+                      'Lighting': all_data[5]},
       })
     })
     .catch(function(err) {
