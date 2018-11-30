@@ -96,7 +96,7 @@ app.get('/addItem', function (request, response) {
         image: '',
         image2: '',
         image3: '',
-        discription: '',
+        description: '',
         dimensions: ''
     })
 });
@@ -110,7 +110,7 @@ app.post('/addItem', function (request, response) {
     request.assert('image', 'Picture is required').notEmpty();
     request.assert('image2', 'Picture 2 is required').notEmpty();
     request.assert('image3', 'Picture 3 is required').notEmpty();
-    request.assert('discription', 'Discription is required').notEmpty();
+    request.assert('description', 'description is required').notEmpty();
 
     var errors = request.validationErrors();
     if (!errors) { // No valProductIDation errors
@@ -127,11 +127,11 @@ app.post('/addItem', function (request, response) {
             image: request.sanitize('image').escape().trim(),
             image2: request.sanitize('image2').escape().trim(),
             image3: request.sanitize('image3').escape().trim(),
-            discription: request.sanitize('discription').escape().trim(),
+            description: request.sanitize('description').escape().trim(),
             dimensions: request.sanitize('dimensions').escape().trim()
         };
         // Running SQL query to insert data into the store table
-        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,description,dimensions, stock) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.discription, item.dimensions, item.stock])
+        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,description,dimensions, stock) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.description, item.dimensions, item.stock])
             .then(function (result) {
                 request.flash('success', 'Data added successfully!');
                 // render views/store/add.ejs
@@ -146,7 +146,7 @@ app.post('/addItem', function (request, response) {
                     image: '',
                     image2: '',
                     image3: '',
-                    discription: '',
+                    description: '',
                     dimensions: ''
                 })
             }).catch(function (err) {
@@ -163,7 +163,7 @@ app.post('/addItem', function (request, response) {
                 image: '',
                 image2: '',
                 image3: '',
-                discription: '',
+                description: '',
                 dimensions: ''
             })
         })
@@ -181,7 +181,7 @@ app.post('/addItem', function (request, response) {
             image: request.body.image,
             image2: request.body.image2,
             image3: request.body.image3,
-            discription: request.body.discription,
+            description: request.body.description,
             dimensions: request.body.dimensions
         })
     }
@@ -214,7 +214,7 @@ app.get('/edit/(:productid)', function (request, response) {
                     image: row.image,
                     image2: row.image2,
                     image3: row.image3,
-                    discription: row.discription,
+                    description: row.description,
                     dimensions: row.dimensions,
                     stock: row.stock
                 })
@@ -241,7 +241,7 @@ app.put('/edit/(:productid)', function (req, res) {
     req.assert('image', 'Picture is required').notEmpty();
     req.assert('image2', 'Picture 2 is required').notEmpty();
     req.assert('image3', 'Picture 3 is required').notEmpty();
-    req.assert('discription', 'Discription is required').notEmpty();
+    req.assert('description', 'description is required').notEmpty();
     var itemProductID = req.params.produtid;
 
     var errors = req.validationErrors();
@@ -259,14 +259,14 @@ app.put('/edit/(:productid)', function (req, res) {
             image: req.sanitize('image').escape().trim(),
             image2: req.sanitize('image2').escape().trim(),
             image3: req.sanitize('image3').escape().trim(),
-            discription: req.sanitize('discription').escape().trim(),
+            description: req.sanitize('description').escape().trim(),
             dimensions: req.sanitize('dimensions').escape().trim()
         };
 
         // TODO: Initialize the updateQuery variable with a SQL query
         // that updates the details of an item given its ProductID
         // in the 'store' table
-        var updateQuery = 'UPDATE products SET name = '+"'" +item.name + "'," +'brand = '+ "'" + item.brand + "', "+ 'type = '+ "'" + item.type+ "', "+ 'cost = ' + "'"+ item.cost + "', " + 'material = ' + "'" + item.material + "', " +'stock = ' + "'" + item.stock + "', " + 'image = ' + "'" + item.image + "', " + 'image2 = ' + "'" + item.image2 + "', "+ 'image3 = ' + "'" + item.image3 + "', "+ 'discription = '+ "'"+ item.discription + "', "+ 'dimensions = '+ "'" + item.dimensions + "' " + ' WHERE productid = ' + req.params.productid +';';
+        var updateQuery = 'UPDATE products SET name = '+"'" +item.name + "'," +'brand = '+ "'" + item.brand + "', "+ 'type = '+ "'" + item.type+ "', "+ 'cost = ' + "'"+ item.cost + "', " + 'material = ' + "'" + item.material + "', " +'stock = ' + "'" + item.stock + "', " + 'image = ' + "'" + item.image + "', " + 'image2 = ' + "'" + item.image2 + "', "+ 'image3 = ' + "'" + item.image3 + "', "+ 'description = '+ "'"+ item.description + "', "+ 'dimensions = '+ "'" + item.dimensions + "' " + ' WHERE productid = ' + req.params.productid +';';
         // Running SQL query to insert data into the store table
         db.none(updateQuery)
             .then(row => {
@@ -286,7 +286,7 @@ app.put('/edit/(:productid)', function (req, res) {
                     image: row.image,
                     image2: row.image2,
                     image3: row.image3,
-                    discription: row.discription,
+                    description: row.description,
                     dimensions: row.dimensions,
                     stock: row.stock
                 })
@@ -306,7 +306,7 @@ app.put('/edit/(:productid)', function (req, res) {
             image: row.image,
             image2: row.image2,
             image3: row.image3,
-            discription: row.discription,
+            description: row.description,
             dimensions: row.dimensions,
             stock: row.stock
         })
