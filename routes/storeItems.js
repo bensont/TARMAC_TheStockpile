@@ -131,7 +131,7 @@ app.post('/addItem', function (request, response) {
             dimensions: request.sanitize('dimensions').escape().trim()
         };
         // Running SQL query to insert data into the store table
-        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,discription,dimensions, stock) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.discription, item.dimensions, item.stock])
+        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,description,dimensions, stock) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.discription, item.dimensions, item.stock])
             .then(function (result) {
                 request.flash('success', 'Data added successfully!');
                 // render views/store/add.ejs
