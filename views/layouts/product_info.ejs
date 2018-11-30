@@ -1,0 +1,38 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <div class="row" id="product-name-row">
+      <div id="product-name">
+        <h2 class="font-weight-bold" id ="product-name-text"><%- individual_data.name %></h2>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row" id="material-row">
+      <div id="material">
+        <div id="product-material">
+          <h4 class="font-weight-light" id="material-type"><%- individual_data.material %></h4>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item list-group-item-success">
+    <div class="row" id="price-row">
+      <h4 class="font-weight-bold" id="product-price"><%- individual_data.cost %></h4>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row" id="description-row">
+      <%- individual_data.description %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row" id="dimensions-row">
+      <%- individual_data.dimensions %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="row" id="checkout-row">
+      <button type="button" class="btn btn-outline-success" id="checkout-button" onclick="addToCart()">Add to Cart</button>
+    </div>
+  </li>
+</ul>
