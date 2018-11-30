@@ -24,14 +24,18 @@ table, th, td {
     <tr style='text-align:left; background-color:#CCC;';>
         <th>Name</th>
         <th>email</th>
+        <th>Permission Level</th>
+        <th>Street Address</th>
     </tr>
     <% if (data) { %>
     <!-- Using a for-loop to loop over each row in the database.
     The 'data' variable is passed from the store.js during the response.render function call -->
         <% data.forEach(function(item){ %>
             <tr>
-                <td ><%= item.username %></td>
+                <td ><%= item.loginid %></td>
                 <td><%= item.email %></td>
+                <td><%= item.permissionslevel %></td>
+                <td><%= item.streetaddress %></td>
             </tr>
         <% }) %>
     <% } %>

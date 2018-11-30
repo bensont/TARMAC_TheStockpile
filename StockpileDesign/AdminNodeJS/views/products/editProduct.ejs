@@ -1,5 +1,5 @@
 
-<style>
+<style>         
 table, th, td {
     margin-left: 210px;
 }
@@ -13,20 +13,63 @@ table, th, td {
     <p style="color:green"><%- messages.success %></p>
 <% } %>
 <!-- The action attribute of the form refers to a item using its database id -->
-<form action="/storeItems/edit/<%= id %>" method="post" name="form1">
+<form action="/storeItems/edit/<%= productid %>" method="post" name="form1">
     <table width="25%" border="0">
         <tr>
             <td>Name</td>
-            <td><input type="text" name="sname" id="name" value="<%= sname %>"/></td>
+            <td><input type="text" name="name" id="name" value="<%= name %>"/></td>
         </tr>
+
+        <tr>
+            <td>Brand</td>
+            <td><input type="text" name="brand" id="brand" value="<%= brand %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Type</td>
+            <td><input type="text" name="type" id="type" value="<%= type %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Cost</td>
+            <td><input type="text" name="cost" id="cost" value="<%= cost %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Materials</td>
+            <td><input type="text" name="material" id="material" value="<%= material %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 1</td>
+            <td><input type="text" name="image" id = "image" value="<%= image %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 2</td>
+            <td><input type="text" name="image2" id = "image2" value="<%= image2 %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 3</td>
+            <td><input type="text" name="image3" id = "image3" value="<%= image3 %>"/></td>
+        </tr>
+
         <tr>
             <td>Quantity</td>
-            <td><input type="text" name="qty" value="<%= qty %>"/></td>
+            <td><input type="text" name="stock" id = "stock" value="<%= stock %>"/></td>
         </tr>
+
         <tr>
-            <td>Picture Name</td>
-            <td><input type="text" name="pictureimage" value="<%= pictureimage %>"/></td>
+            <td>Discription</td>
+            <td><input type="text" name="discription" id="discription" value="<%= discription %>"/></td>
         </tr>
+
+        <tr>
+            <td>Dimensions</td>
+            <td><input type="text" name="dimensions" id="dimensions" value="<%= dimensions %>"/></td>
+        </tr>
+
         <tr>
             <td></td>
             <td><input type="submit" name="Submit" value="Edit"/></td>
@@ -37,4 +80,4 @@ table, th, td {
 
 
 <!-- Include Footer Partial -->
-<%- include ../layouts/footer.ejs %>
+<%- include ../layouts/footer.ejs %> 
