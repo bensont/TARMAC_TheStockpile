@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>The Stockpile-Cart</title>
-    <link rel="shortcut icon" type="image/PNG" href="chairlogo2.PNG" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/views/styles/navbar.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossor <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <style>
-        #price::before{
-	content: "$";
+  <%- include ./layouts/header.ejs %>
+  <link rel="stylesheet" href="/views/styles/related_products.css">
+  <link rel="stylesheet" href="/views/styles/product_info.css">
+  <link rel="stylesheet" href="/views/styles/product.css">
+  <script type = "text/javascript" src="/scripts/product.js"></script>
+  <style>
+    #price::before{
+	    content: "$";
     }
 
     .container .clearfix{
@@ -42,20 +34,10 @@
   </style>
 </head>
 
-<body onload="loadEvent()">
-    <%- include ./layouts/navbar.ejs %>
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <h1>The Stockpile</h1>
-        <img class="img-fluid" src="tempLogo.jpg" alt="tempLogo" width="500" height="300">
-    </div>
-    <br>
-    <a href="singleProductDummy.html">item1</a>
-    <br>
-    <a href="singleProductDummy2.html">item2</a>
-    <br>
-    <a href="singleProductDummy3.html">item3</a>
-    <br>
-    <a href="#" onclick="clearCart()">clear cart</a>
+<body  onload="loadEvent()">
+  <%- include ./layouts/navbar.ejs %>
+  <br><br>
+
 
 
     <div class="container">
@@ -73,27 +55,6 @@
                 </tr>
             </thead>
             <tbody>
-
-
-                <!-- <tr>
-        <th id="quat">1</th>
-	<th id="tableimg"><img src="couch.jpeg" alt="" style="width:auto; height:100px;"></th>
-        <th id="tName">Love Seat Couch</th>
-        <th id="price">300</th>
-      </tr>
-      <tr>
-        <th id="quat">1</th>
-	<th id="tableimg"><img src="wc.jpeg" alt="" style="width:auto; height:100px;"></th>
-        <th th id="tName">Wooden Chair</th>
-        <th id="price">50</th>
-      </tr>
-      <tr>
-        <th id="quat">2</th>
-	<th id="tableimg"><img src="lamp.jpeg" alt="" style="width:auto; height:100px;"></th>
-        <th th id="tName">Living Room Lamp</th>
-        <th id="price">35</th>
-      </tr>
-    </tbody> -->
         </table>
         <div id="hideIfEmpty">
             <div class="clearfix">
@@ -139,6 +100,10 @@
                 var t = del(s);
                 var total = s + Number(t);
 
+                s = s.toFixed(2);
+                t = t.toFixed(2);
+                total = total.toFixed(2);
+
                 document.getElementById('subtotal').innerHTML = "Subtotal: $" + String(s);
                 document.getElementById('delivery').innerHTML = "Delivery: $" + String(t);
                 document.getElementById('total').innerHTML = "Total: $" + String(total);
@@ -151,16 +116,22 @@
 
         function sum() {
             var total = 0;
-            var myTab = document.getElementById('cartTable');
+            /**var myTab = document.getElementById('cartTable');
             for (i = 1; i < myTab.rows.length; i++) {
                 var objCells = myTab.rows[i].cells
                 total += Number(objCells.item(0).innerHTML) * Number(objCells.item(3).innerHTML)
+            }**/
+            var str = localStorage.getItem('keyCartArray');
+            var json_cart = JSON.parse(str);
+            for (i in json_cart.items) {
+              total += json_cart.items[i].vals[2] * json_cart.items[i].vals[3];
             }
-            return total;
+
+            return Number(total);
         }
 
         function del(num) {
-            return (.0728 * num).toFixed(2);
+            return (.0728 * num);
         }
 
         function loadCart() {
@@ -210,9 +181,7 @@
             }
         }
     </script>
-    <div id="footer" class="jumbotron text-center" style="margin-bottom:0">
-        <p>The vision for The Stockpile to provide users with a sleek, modern shopping experience to buy beautiful pre-assembled furniture that will last for a lifetime.</p>
-    </div>
+
 
 </body>
 
