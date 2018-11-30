@@ -1,0 +1,44 @@
+<% } %>
+
+<script type="text/javascript">
+    var err = <%- JSON.stringify(messages) %>;
+    console.log(err);
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    margin-left: 210px;
+}
+</style>
+
+<table border="0" width='60%' margin-left: 210px>
+    <tr style='text-align:left; background-color:#CCC'>
+        <th>Order Id</th>
+        <th>User Id</th>
+        <th>Total Cost of Order</th>
+        <th>Discounts of Order</th>
+        <th>Time Order was processed</th>
+        <th>Status</th>
+        <th>Total Quantity of Order</th>
+    </tr>
+    <% if (data) { %>
+    <!-- Using a for-loop to loop over each row in the database.
+    The 'data' variable is passed from the store.js during the response.render function call -->
+        <% data.forEach(function(item){ %>
+            <tr>
+                <td><%= item.orderid %></td>
+                <td><%= item.userid %></td>
+                <td><%= item.totalcost %></td>
+                <td><%= item.discounts %></td>
+                <td><%= item.timestamp %></td>
+                <td><%= item.status %></td>
+                <td><%= item.totalquantity %></td>
+            </tr>
+        <% }) %>
+    <% } %>
+</table>
+
+
+<!--Including Footer Partial-->
+<%- include ../layouts/footer.ejs %>
