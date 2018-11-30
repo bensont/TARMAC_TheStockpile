@@ -79,12 +79,12 @@ CREATE TABLE IF NOT EXISTS OrderProduct (
 );
 
 INSERT INTO Users (firstname, lastname, password, PermissionsLevel, StreetAddress, City, State, ZipCode, DeliveryInstructions, email)
-VALUES ('admin','password','admin','54 Red Street','New York City','New York', 10027,'Drop on porch', 'spiderman@marvelheroes.org'),
+VALUES ('admin','admin','password','admin','54 Red Street','New York City','New York', 10027, 'Drop on porch', 'spiderman@marvelheroes.org'),
 ('Bruce', 'Banner','hulk','customer','123 Green Street','Dayton','Ohio', 45377,'Drop on porch', 'hulk@marvelheroes.org'),
 ('Anthony', 'Stark','ironman','customer','456 Red Lane','Long Island','New York', 11101,'Signature required', 'ironman@marvelheroes.org'),
 ('Steve', 'Rogers','captainamerica','customer','159 Blue Drive','New York City','New York', 10087,'Call before delivery', 'captainamerica@marvelheroes.org'),
 ('Stephen', 'Strange','dorctorstrange','customer','753 Purple Street','Philadelphia','Pennsylvania', 19135,'Signature required', 'doctorstrange@marvelheroes.org'),
-('Peter'  'Parker','spiderman','customer','54 Red Street','New York City','New York', 10027,'Drop on porch', 'spiderman@marvelheroes.org'),
+('Peter' , 'Parker','spiderman','customer','54 Red Street','New York City','New York', 10027,'Drop on porch', 'spiderman@marvelheroes.org'),
 ('Scott', 'Lang','antman','customer','4876 Anthony Drive','Coral Gables','Florida', 33134,'Call before delivery', 'antman@marvelheroes.org'),
 ('Peter', 'Quill','starlord','customer','6698 Space Lane','St. Charles','Missouri', 63302,'Call before delivery, I may be way, way out.', 'starlord@marvelheroes.org'),
 ('Wade', 'Wilson','deadpool','customer','9855 Undead Stree','New York City','New York', 10115,'Signature required', 'deadpool@marvelheroes.org'),
