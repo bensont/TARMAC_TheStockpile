@@ -22,20 +22,33 @@ table, th, td {
 
 <table border="0" width='30%' align="left">
     <tr style='text-align:left; background-color:#CCC;';>
-        <th>Name</th>
+        <th>Last Name,First Name</th>
         <th>email</th>
         <th>Permission Level</th>
         <th>Street Address</th>
+        <th>City</th>
+        <th>State/Provience</th>
+        <th>Country</th>
+        <th>Zip Code</th>
+        <th>Delivery Instructions</th>
+        <th>Time Created</th>
     </tr>
     <% if (data) { %>
     <!-- Using a for-loop to loop over each row in the database.
     The 'data' variable is passed from the store.js during the response.render function call -->
         <% data.forEach(function(item){ %>
             <tr>
-                <td ><%= item.loginid %></td>
+                <td ><%= item.lastname %>,<%= item.firstname %> </td>
                 <td><%= item.email %></td>
                 <td><%= item.permissionslevel %></td>
                 <td><%= item.streetaddress %></td>
+                <td><%= item.city %></td>
+                <td><%= item.state%></td>
+                <td>United States</td>
+                <td><%= item.zipcode %></td>
+                <td><%= item.deliveryinstructions %></td>
+                <td><%= item.create_time %></td>
+
             </tr>
         <% }) %>
     <% } %>
