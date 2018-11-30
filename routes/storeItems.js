@@ -271,7 +271,7 @@ app.put('/edit/(:productid)', function (req, res) {
         db.none(updateQuery)
             .then(row => {
                 req.flash('success', 'Data updated successfully!');
-                res.redirect('/storeItems');
+                res.redirect('/admin/storeItems');
             })
             .catch(function (err) {
                 req.flash('error', err);
@@ -325,10 +325,10 @@ app.delete('/delete/(:productid)', function (req, res, next) {
     db.none(deleteQuery)
         .then(function (result) {
                   req.flash('success', 'successfully deleted it');
-                  res.redirect('/storeItems');
+                  res.redirect('/admin/storeItems');
         })
         .catch(function (err) {
                    req.flash('error', err);
-                   res.redirect('/storeItems')
+                   res.redirect('/admin/storeItems')
         })
 });

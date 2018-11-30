@@ -40,7 +40,7 @@ app.get('/edit/(:productid)', function (request, response) {
             // if item not found
             if (row.length === 0) {
                 request.flash('error', 'Item not found with ProductID = ' + request.params.productid);
-                response.redirect('/restock')
+                response.redirect('/admin/restock')
             }
             else {
                 response.render('restock/edit', {
@@ -91,7 +91,7 @@ SET id = id + (SELECT MAX(id) FROM your_table)
         db.none(updateQuery)
             .then(row => {
                 req.flash('success', 'Data updated successfully!');
-                res.redirect('/storeRestock');
+                res.redirect('/admin/storeRestock');
             })
             .catch(function (err) {
                 req.flash('error', err);
