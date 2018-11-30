@@ -55,12 +55,12 @@ table, th, td {
                 <td><%= item.image3 %></td>
                 <td>
                     <div class="edit-delete" style="float:left">
-                        <a href='/storeItems/edit/<%= item.productid %>'>Edit</a> &nbsp;
+                        <a href='/admin/storeItems/edit/<%= item.productid %>'>Edit</a> &nbsp;
                     </div>
                 </td>
                 <td>
                     <div class="edit-delete" style="float:left">
-                        <form action="/storeItems/delete/<%= item.productid %>" method="post" style="float:right">
+                        <form action="/admin/storeItems/delete/<%= item.productid %>" method="post" style="float:right">
                             <input name="delete" onclick="return confirm('Are you sure you ' + 'want to delete?')" type="submit" value='Delete'>
                             <input name="_method" type="hidden" value="DELETE">
                         </form>
