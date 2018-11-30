@@ -85,8 +85,8 @@ app.put('/edit/(:productid)', function (req, res) {
         UPDATE your_table
 SET id = id + (SELECT MAX(id) FROM your_table)
         */
-        var updateQuery = 'UPDATE products SET stock = ' + "'" + item.stock + "' " + ' WHERE productid = ' + req.params.productid +';';
-        //var updateQuery = 'Update products SET stock = ' + "'" + item.stock + "' +(SELECT stock FROM products WHERE productid = " + req.params.prouductid + ');';
+        //var updateQuery = 'UPDATE products SET stock = ' + "'" + item.stock + "' " + ' WHERE productid = ' + req.params.productid +';';
+        var updateQuery = 'Update products SET stock = ' + item.stock + "+(SELECT stock FROM products WHERE productid = " + req.params.productid + ') WHERE productid = '+ req.params.productid +';';
         // Running SQL query to insert data into the store table
         db.none(updateQuery)
             .then(row => {

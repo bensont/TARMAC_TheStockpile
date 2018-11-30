@@ -34,13 +34,13 @@ var index = require('./routes/index'); //maybe this is the home page
 var storeUser = require('./routes/storeUser'); //list of users
 var storeItems = require('./routes/storeItems'); //list of items
 var storeRestock = require('./routes/storeRestock');//this is for listing items restock and working with that.
-//var storeOrders = require('./routes/storeOrders'); //list of orders
+var storeOrders = require('./routes/storeOrders'); //list of orders
 
 app.use('/', index);
 app.use('/storeUser', storeUser);
 app.use('/storeItems', storeItems);
 app.use('/storeRestock', storeRestock);
-//app.use('/storeOrders', storeOrders);
+app.use('/storeOrders', storeOrders);
 
 var port = 4000;
 app.listen(port, function () {
