@@ -42,7 +42,12 @@ app.use('/storeItems', storeItems);
 app.use('/storeRestock', storeRestock);
 app.use('/storeOrders', storeOrders);
 
-var port = 4000;
+//local
+// var port = 4000;
+
+//remote
+var port = process.env.PORT;
+
 app.listen(port, function () {
     console.log('Server running on http://localhost:' + port)
 
