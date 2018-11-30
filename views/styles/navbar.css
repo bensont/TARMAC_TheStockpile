@@ -1,0 +1,34 @@
+:root{
+  --hover-color: #F4F4F4
+}
+
+.dropdown-menu.collapsing {
+  display:block;
+}
+
+.dropdown-menu {
+  padding: 0px;
+}
+
+.dropdown-menu > a:hover {
+  background-color: var(--hover-color);
+}
+
+.dropdown-divider {
+  margin: 0px;
+}
+
+.dropdown-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#top-dropdown-item {
+  border-top-right-radius: .25rem;
+  border-top-left-radius: .25rem;
+}
+
+#bottom-dropdown-item {
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
