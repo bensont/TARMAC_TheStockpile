@@ -1,0 +1,34 @@
+
+<style>         
+table, th, td {
+    margin-left: 210px;
+}
+</style>
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+<% if (messages.success) { %>
+    <p style="color:green"><%- messages.success %></p>
+<% } %>
+<!-- The action attribute of the form refers to a item using its database id -->
+<form action="/storeRestock/edit/<%= productid %>" method="post" name="form1">
+    <table width="25%" border="0">
+
+        <tr>
+            <td>Quantity</td>
+            <td><input type="text" name="stock" id = "stock" value="<%= stock %>"/></td>
+        </tr>
+        
+        <tr>
+            <td></td>
+            <td><input type="submit" name="Submit" value="Edit"/></td>
+        </tr>
+    </table>
+    <input type="hidden" name="_method" value="PUT"/>
+</form>
+
+
+<!-- Include Footer Partial -->
+<%- include ../layouts/footer.ejs %> 

@@ -1,0 +1,76 @@
+<!--Including Header Partial-->
+<%- include ../layouts/header.ejs %>
+
+<!--Using if-check to see if an error occurred and displaying appropriate message-->
+<% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+<% if (messages.success) { %>
+    <p style="color:blue"><%- messages.success %></p>
+<% } %>
+
+<script type="text/javascript">
+    var err = <%- JSON.stringify(messages) %>;
+    console.log(err);
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    margin-left: 210px;
+}
+</style>
+
+<table border="0" width='60%' margin-left: 210px>
+    <tr style='text-align:left; background-color:#CCC'>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Materials</th>
+        <th>Discription</th>
+        <th>Dimensions</th>
+        <th>Stock</th>
+        <th>Picture Image 1</th>
+        <th>Picture Image 2</th>
+        <th>Picture Image 3</th>
+        <th>Edit Product</th>
+        <th>Delete Product</th>
+    </tr>
+    <% if (data) { %>
+    <!-- Using a for-loop to loop over each row in the database.
+    The 'data' variable is passed from the store.js during the response.render function call -->
+        <% data.forEach(function(item){ %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.brand %></td>
+                <td><%= item.type %></td>
+                <td><%= item.cost %></td>
+                <td><%= item.material %></td>
+                <td><%= item.discription %></td>
+                <td><%= item.dimensions %></td>
+                <td><%= item.stock %></td>
+                <td><%= item.image %></td>
+                <td><%= item.image2 %></td>
+                <td><%= item.image3 %></td>
+                <td>
+                    <div class="edit-delete" style="float:left">
+                        <a href='/storeItems/edit/<%= item.productid %>'>Edit</a> &nbsp;
+                    </div>
+                </td>
+                <td>
+                    <div class="edit-delete" style="float:left">
+                        <form action="/storeItems/delete/<%= item.productid %>" method="post" style="float:right">
+                            <input name="delete" onclick="return confirm('Are you sure you ' + 'want to delete?')" type="submit" value='Delete'>
+                            <input name="_method" type="hidden" value="DELETE">
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        <% }) %>
+    <% } %>
+</table>
+
+
+<!--Including Footer Partial-->
+<%- include ../layouts/footer.ejs %>

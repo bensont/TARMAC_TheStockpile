@@ -1,0 +1,93 @@
+<!--Including Header partial-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+<% if (messages.success) { %>
+    <p style="color:green"><%- messages.success %></p>
+<% } %>
+<style>
+table, th, td {
+    margin-left: 210px;
+}
+tr
+{
+    margin-bottom: 10px;
+}
+</style>
+
+<!--Create a form to take input from user-->
+<form action="/storeItems/addItem" method="post" name="form1">
+    <table width="25%" border="0">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" id="name" value="<%= name %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Brand</td>
+            <td><input type="text" name="brand" id="brand" value="<%= brand %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Type</td>
+            <td>
+                <select name="type" id="type">
+                  <option name="type" id="type" value="Chair">Chair</option>
+                  <option name="type" id="type" value="dresser">Dresser</option>
+                  <option name="type" id="type" value="lighting">Lighting</option>
+                  <option name="type" id="type" value="mirror">Mirror</option>
+                  <option name="type" id="type" value="table">Table</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Cost</td>
+            <td><input type="text" name="cost" id="cost" value="<%= cost %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Materials</td>
+            <td><input type="text" name="material" id="material" value="<%= material %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 1</td>
+            <td><input type="text" name="image" id = "image" value="<%= image %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 2</td>
+            <td><input type="text" name="image2" id = "image2" value="<%= image2 %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Picture Name 3</td>
+            <td><input type="text" name="image3" id = "image3" value="<%= image3 %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Quantity</td>
+            <td><input type="text" name="stock" id = "stock" value="<%= stock %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Discription</td>
+            <td><input type="text" name="discription" id="discription" value="<%= discription %>"/></td>
+        </tr>
+
+        <tr>
+            <td>Dimensions</td>
+            <td><input type="text" name="dimensions" id="dimensions" value="<%= dimensions %>"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="Submit" value="Add"/></td>
+        </tr>
+    </table>
+</form>
+
+<!--Including Footer partial-->
+<%- include ../layouts/footer.ejs %>

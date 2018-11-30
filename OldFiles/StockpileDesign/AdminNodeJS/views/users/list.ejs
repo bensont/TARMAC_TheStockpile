@@ -1,0 +1,59 @@
+<!--Including Header Partial-->
+<%- include ../layouts/header.ejs %>
+
+<!--Using if-check to see if an error occurred and displaying appropriate message-->
+<% if (messages.error) { %>
+    <p style="color:red"><%- messages.error %></p>
+<% } %>
+<% if (messages.success) { %>
+    <p style="color:blue"><%- messages.success %></p>
+<% } %>
+<style>
+table, th, td {
+    border: 1px solid black;
+    margin-left: 210px;
+}
+</style>
+
+<script type="text/javascript">
+    var err = <%- JSON.stringify(messages) %>;
+    console.log(err);
+</script>
+
+<table border="0" width='30%' align="left">
+    <tr style='text-align:left; background-color:#CCC;';>
+        <th>Last Name,First Name</th>
+        <th>email</th>
+        <th>Permission Level</th>
+        <th>Street Address</th>
+        <th>City</th>
+        <th>State/Provience</th>
+        <th>Country</th>
+        <th>Zip Code</th>
+        <th>Delivery Instructions</th>
+        <th>Time Created</th>
+    </tr>
+    <% if (data) { %>
+    <!-- Using a for-loop to loop over each row in the database.
+    The 'data' variable is passed from the store.js during the response.render function call -->
+        <% data.forEach(function(item){ %>
+            <tr>
+                <td ><%= item.lastname %>,<%= item.firstname %> </td>
+                <td><%= item.email %></td>
+                <td><%= item.permissionslevel %></td>
+                <td><%= item.streetaddress %></td>
+                <td><%= item.city %></td>
+                <td><%= item.state%></td>
+                <td>United States</td>
+                <td><%= item.zipcode %></td>
+                <td><%= item.deliveryinstructions %></td>
+                <td><%= item.create_time %></td>
+
+            </tr>
+        <% }) %>
+    <% } %>
+</table>
+
+
+<!--Including Footer Partial-->
+<%- include ../layouts/footer.ejs %>
