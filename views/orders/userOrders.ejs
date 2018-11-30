@@ -1,0 +1,32 @@
+<% } %>
+
+<script type="text/javascript">
+    var err = <%- JSON.stringify(messages) %>;
+    console.log(err);
+</script>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    margin-left: 210px;
+}
+</style>
+
+<table border="0" width='60%' margin-left: 210px>
+    <tr style='text-align:left; background-color:#CCC'>
+        <th>Type</th>
+    </tr>
+    <% if (data) { %>
+    <!-- Using a for-loop to loop over each row in the database.
+    The 'data' variable is passed from the store.js during the response.render function call -->
+        <% data.forEach(function(item){ %>
+            <tr>
+                <td><%= item.type %></td>
+            </tr>
+        <% }) %>
+    <% } %>
+</table>
+
+
+<!--Including Footer Partial-->
+<%- include ../layouts/footer.ejs %>

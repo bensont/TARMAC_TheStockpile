@@ -13,7 +13,7 @@ table, th, td {
     <p style="color:green"><%- messages.success %></p>
 <% } %>
 <!-- The action attribute of the form refers to a item using its database id -->
-<form action="/storeItems/edit/<%= productid %>" method="post" name="form1">
+<form action="/admin/storeItems/edit/<%= productid %>" method="post" name="form1">
     <table width="25%" border="0">
         <tr>
             <td>Name</td>
@@ -61,8 +61,8 @@ table, th, td {
         </tr>
 
         <tr>
-            <td>Discription</td>
-            <td><input type="text" name="discription" id="discription" value="<%= discription %>"/></td>
+            <td>Description</td>
+            <td><input type="text" name="description" id="description" value="<%= description %>"/></td>
         </tr>
 
         <tr>

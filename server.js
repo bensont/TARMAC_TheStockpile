@@ -36,13 +36,18 @@ var storeItems = require('./routes/storeItems'); //list of items
 var storeRestock = require('./routes/storeRestock');//this is for listing items restock and working with that.
 var storeOrders = require('./routes/storeOrders'); //list of orders
 
-app.use('/', index);
-app.use('/storeUser', storeUser);
-app.use('/storeItems', storeItems);
-app.use('/storeRestock', storeRestock);
-app.use('/storeOrders', storeOrders);
+app.use('/admin', index);
+app.use('/admin/storeUser', storeUser);
+app.use('/admin/storeItems', storeItems);
+app.use('/admin/storeRestock', storeRestock);
+app.use('/admin/storeOrders', storeOrders);
 
-var port = 4000;
+//local
+// var port = 4000;
+
+//remote
+var port = process.env.PORT;
+
 app.listen(port, function () {
     console.log('Server running on http://localhost:' + port)
 
