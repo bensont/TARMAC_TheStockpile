@@ -1,60 +1,65 @@
 <html>
+
 <head>
     <%- include ./layouts/header.ejs %>
+    <link rel="stylesheet" type="text/css" href="/views/styles/product_list.css">
 </head>
+
 <body>
-<!--Including Header and NavBar Partial-->
-<%- include ./layouts/navbar.ejs %>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Products</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%- category %></li>
-  </ol>
-</nav>
+    <!--Including Header and NavBar Partial-->
+    <%- include ./layouts/navbar.ejs %>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <%- category %>
+            </li>
+        </ol>
+    </nav>
 
-<h1><%= category %></h1>
-<!--Using if-check to see if an error occurred and displaying appropriate message-->
-<% if (messages.error) { %>
-<p style="color:red">
-  <%- messages.error %>
-</p>
-<% } %>
-<% if (messages.success) { %>
-<p style="color:blue">
-  <%- messages.success %>
-</p>
-<% } %>
-
-<script type="text/javascript">
-  var err = <%- JSON.stringify(messages) %>;
-  console.log(err);
-</script>
-
-<table border="0" width='60%'>
-  <tr style='text-align:left; background-color:#CCC'>
-    <th>Name</th>
-    <!-- <th>ImagePath</th>
-            <th>Price</th> -->
-  </tr>
-  <% if (data) { %>
-  <!-- Using a for-loop to loop over each row in the database.
+    <h1>
+        <%= category %>
+    </h1>
+    <div class="container-fluid">
+        <!-- Spacer column -->
+        <div class="row">
+            <div class="col-3"></div>
+            <!-- List column -->
+            <div class="col">
+                <div class="card-deck">
+                    <% if (data) { %>
+                    <!-- Using a for-loop to loop over each row in the database.
     The 'data' variable is passed from the store.js during the response.render function call -->
-  <% data.forEach(function(item){ %>
-  <tr>
-    <td>
-      <a href="/<%= item.type %>/<%= item.id %>">
-        <%= item.name %></a>
-    </td>
-    <!-- <td>
-                <%= item.imagepath %>
-            </td>
-            <td>
-                <%= item.price %>
-            </td> -->
-  </tr>
-  <% }) %>
-  <% } %>
-</table>
+                    <% data.forEach(function(item){ %>
+                    <div class="row">
+                        <div class="card product-card">
+                            <a href="/<%= item.type %>/<%- item.id %>">
+                                <img class="card-img-top" src="/Database_Images/<%= item.image %>" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <p class="card-title"><a href="/<%= item.type %>/<%- item.id %>">
+                                                <%= item.name %></a></p>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <p class="card-text">
+                                            <%= item.price.toFixed(2) %>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                    <% } %>
+                <!-- End Card Deck -->
+                </div>
+            </div>
+            <!-- Spacer Column -->
+            <div class="col-3"></div>
+        </div>
+    </div>
 </body>
 
 </html>
