@@ -1,12 +1,12 @@
 
 
 
-function addToQuantity(name){
+function addToQuantity(id){
     var str = localStorage.getItem('keyCartArray');
     var json_cart = JSON.parse(str);
 
     for (i in json_cart.items) {
-      if(json_cart.items[i].vals[1] == name){
+      if(json_cart.items[i].vals[4] == id){
         json_cart.items[i].vals[3] += 1;
       }
     }
@@ -15,7 +15,7 @@ function addToQuantity(name){
     localStorage.setItem('keyCartArray', formatted_send);
   }
 
-  function inCartAlready(name){
+  function inCartAlready(id){
     if(localStorage.getItem('keyCartArray') == null || localStorage.getItem('keyCartArray') == "{\"items\":[]}"){
       return 0;
     }
@@ -24,7 +24,7 @@ function addToQuantity(name){
     var json_cart = JSON.parse(str);
 
     for (i in json_cart.items) {
-      if(json_cart.items[i].vals[1] == name){
+      if(json_cart.items[i].vals[4] == id){
         return 1;
       }
     }
@@ -41,14 +41,15 @@ function addToQuantity(name){
     return ret;
   }
 
-  function parseJsonToLocalStorage(){
+  function parseJsonToLocalStorage(passed_id){
     var pic_src = document.querySelector('#main-image').src;
     var item_name = document.querySelector('#product-name-text').textContent;
     var item_price = document.querySelector('#product-price').textContent;
-    if(inCartAlready(item_name) == 1){
-        addToQuantity(item_name);
+    var item_id = passed_id;
+    if(inCartAlready(item_id) == 1){
+        addToQuantity(item_id);
     }else{
-      var send = [pic_src, item_name, item_price, 1];
+      var send = [pic_src, item_name, item_price, 1, item_id];
       var oldstr = localStorage.getItem('keyCartArray');
       var formatted_send = formmatToJSON(oldstr,JSON.stringify(send));
       localStorage.setItem('keyCartArray', formatted_send);
@@ -63,9 +64,9 @@ function addToQuantity(name){
   }
 
 
-  function addToCart(){
+  function addToCart(passed_id){
     createLocalStorageArray();
-    parseJsonToLocalStorage();
+    parseJsonToLocalStorage(passed_id);
     alert("Added To Cart");
     console.log(localStorage.getItem('keyCartArray'));
   }
