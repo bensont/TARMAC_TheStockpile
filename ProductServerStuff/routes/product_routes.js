@@ -41,7 +41,7 @@ app.get('/', function(request, response) {
 
 // cart route
 app.get('/cart', function(request, response) {
-  response.render('cart.ejs')
+  response.render('cart.ejs', { title: 'Cart'})
 });
 
 //route for a category page
