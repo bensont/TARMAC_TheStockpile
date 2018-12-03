@@ -44,7 +44,7 @@
         <div id="showifempty" style="text-align:center;">
             <h3>Your cart is empty go shopping<h3>
         </div>
-        <h2>My Cart</h2>
+        <h2>Shopping Cart</h2>
         <table id="cartTable" class="table">
             <thead>
                 <tr>
@@ -68,8 +68,9 @@
 
     <script>
         function clearCart() {
-            var cartstr = "{\"items\":[]}";
-            localStorage.setItem('keyCartArray', cartstr);
+            var empty_json = {};
+            var empty_cart_string = JSON.stringify(empty_json);
+            localStorage.setItem('keyCartArray',empty_cart_string);
             var table_body = document.querySelector('tbody');
             while (table_body.firstChild) {
                 var node = table_body.firstChild;
@@ -81,12 +82,48 @@
             loadEvent();
         }
 
+        function reloadCart(){
+          var table_body = document.querySelector('tbody');
+          while (table_body.firstChild) {
+              var node = table_body.firstChild;
+              while (node.firstChild) {
+                  node.removeChild(node.firstChild);
+              }
+              node.parentNode.removeChild(node);
+          }
+          loadEvent();
+        }
+
+        function delete_item(id, name){
+            if(confirm("Remove " + name + " from your cart?")){
+              var str = localStorage.getItem('keyCartArray');
+              var json_cart = JSON.parse(str);
+
+              for (i in json_cart) {
+                if(json_cart[i][4] == id){
+                  delete json_cart[i];
+                  break;
+                }
+              }
+
+              formatted_send = JSON.stringify(json_cart);
+              localStorage.setItem('keyCartArray', formatted_send);
+              console.log(formatted_send);
+              reloadCart();
+            }
+        }
 
         function cartEmpty() {
-            if (localStorage.getItem('keyCartArray') == null || localStorage.getItem('keyCartArray') == "{\"items\":[]}") {
-                return 1;
+            if (localStorage.getItem('keyCartArray') == null) {
+                return true;
             }
-            return 0;
+            var json_cart = JSON.parse(localStorage.getItem('keyCartArray'));
+            for(var key in json_cart) {
+                if(json_cart.hasOwnProperty(key)){
+                  return false;
+                }
+            }
+            return true;
         }
 
         function loadEvent() {
@@ -95,7 +132,7 @@
         }
 
         function displaySum() {
-            if (cartEmpty() == 0) {
+            if (!cartEmpty()) {
                 var s = sum();
                 var t = del(s);
                 var total = s + Number(t);
@@ -116,15 +153,11 @@
 
         function sum() {
             var total = 0;
-            /**var myTab = document.getElementById('cartTable');
-            for (i = 1; i < myTab.rows.length; i++) {
-                var objCells = myTab.rows[i].cells
-                total += Number(objCells.item(0).innerHTML) * Number(objCells.item(3).innerHTML)
-            }**/
+
             var str = localStorage.getItem('keyCartArray');
             var json_cart = JSON.parse(str);
-            for (i in json_cart.items) {
-              total += json_cart.items[i].vals[2] * json_cart.items[i].vals[3];
+            for (i in json_cart) {
+              total += json_cart[i][2] * json_cart[i][3];
             }
 
             return Number(total);
@@ -135,7 +168,7 @@
         }
 
         function loadCart() {
-            if (cartEmpty() == 1) {
+            if (cartEmpty()) {
                 var div_show = document.querySelector('#showifempty');
                 div_show.setAttribute('class', "visible");
                 return;
@@ -147,32 +180,43 @@
             var json_cart = JSON.parse(str);
             console.log(json_cart);
 
-            for (i in json_cart.items) {
+            for (i in json_cart) {
                 var th_quat = document.createElement('th');
                 th_quat.setAttribute("id", "quat");
-                th_quat.appendChild(document.createTextNode(json_cart.items[i].vals[3]));
+                th_quat.appendChild(document.createTextNode(json_cart[i][3]));
 
                 var th_img = document.createElement('th');
                 th_img.setAttribute('id', "tableimg");
                 var imgInner = document.createElement('img');
-                imgInner.setAttribute('src', json_cart.items[i].vals[0]);
+                imgInner.setAttribute('src', json_cart[i][0]);
                 imgInner.setAttribute('alt', "");
                 imgInner.setAttribute('style', "width:auto; height:100px;");
                 th_img.appendChild(imgInner);
 
                 var th_name = document.createElement('th');
                 th_name.setAttribute("id", "tName");
-                th_name.appendChild(document.createTextNode(json_cart.items[i].vals[1]));
+                th_name.appendChild(document.createTextNode(json_cart[i][1]));
 
                 var th_price = document.createElement('th');
                 th_price.setAttribute("id", "price");
-                th_price.appendChild(document.createTextNode(json_cart.items[i].vals[2]));
+                th_price.appendChild(document.createTextNode(json_cart[i][2]));
+
+                //<button type="button" onclick="alert('Hello world!')">Click Me!</button>
+                var th_delete_button = document.createElement('th');
+                th_delete_button.setAttribute('id', "table_delete_button");
+                var button_inner = document.createElement('button');
+                button_inner.setAttribute('type', "button");
+                button_inner.setAttribute('onclick', "delete_item(" + json_cart[i][4] + "," + "\"" + json_cart[i][1] + "\"" + ")");
+                button_inner.appendChild(document.createTextNode("X"));
+                th_delete_button.appendChild(button_inner);
 
                 var row = document.createElement('tr');
+                row.setAttribute('id', "id_" + json_cart[i][4] + "");
                 row.appendChild(th_quat);
                 row.appendChild(th_img);
                 row.appendChild(th_name);
                 row.appendChild(th_price);
+                row.appendChild(th_delete_button);
 
                 var table_body = document.querySelector('tbody');
                 var last_row = table_body.lastChild;
