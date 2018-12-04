@@ -71,10 +71,10 @@ app.use('/', homeRoute);
 app.use(express.static('./'));
 
 //local
-var port = 4000;
+//var port = 4000;
 
 //remote
-//var port = process.env.PORT;
+var port = process.env.PORT;
 
 app.listen(port, function () {
     console.log('Server running on http://localhost:' + port)
