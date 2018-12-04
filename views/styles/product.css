@@ -1,0 +1,8 @@
+#material-type,
+#material-header {
+  display: inline;
+}
+
+.card-body {
+    padding: 0px;
+}

@@ -29,18 +29,24 @@ app.use(session({
 }));
 app.use(flash());
 
-//so first we have to make 
+//so first we have to make
 var index = require('./routes/index'); //maybe this is the home page
 var storeUser = require('./routes/storeUser'); //list of users
 var storeItems = require('./routes/storeItems'); //list of items
 var storeRestock = require('./routes/storeRestock');//this is for listing items restock and working with that.
 var storeOrders = require('./routes/storeOrders'); //list of orders
+var productRoutes = require('./routes/product_routes');
+var homeRoute = require('./routes/homeRoute');
 
 app.use('/admin', index);
 app.use('/admin/storeUser', storeUser);
 app.use('/admin/storeItems', storeItems);
 app.use('/admin/storeRestock', storeRestock);
 app.use('/admin/storeOrders', storeOrders);
+app.use('/product', productRoutes);
+app.use('/', homeRoute);
+
+app.use(express.static('./'));
 
 //local
 // var port = 4000;
