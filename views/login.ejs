@@ -1,0 +1,35 @@
+<html>
+<head>
+    <%- include ./layouts/productheader.ejs %>
+</head>
+<body>
+<!--Including Header and NavBar Partial-->
+<%- include ./layouts/navbar.ejs %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Products</li>
+  </ol>
+</nav>
+
+        <div class="container row">
+            <div class="jumbotron col-sm-4 pull-center">
+                <form action="/login" method="post">
+                    <div>
+                        <label>Email:</label>
+                        <input type="text" name="email"/>
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" name="password"/>
+                    </div>
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="Log In"/>   
+                        <button onclick="location.href='/signup'" type="button" class="btn btn-primary">Register</button>               
+                    </div>
+                </form>
+
+            </div>          
+        </div>
+</body>
+
+</html>

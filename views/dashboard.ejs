@@ -1,0 +1,62 @@
+<html>
+<head>
+    <%- include ./layouts/productheader.ejs %>
+</head>
+<body>
+<!--Including Header and NavBar Partial-->
+<%- include ./layouts/navbar.ejs %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Products</li>
+  </ol>
+</nav>
+        <div class="container row">
+           <h1>Account Management</h1>
+        </div>
+        <div class="container row">
+            <div class="jumbotron col-sm-5 pull-center">
+                <form action="/dashboard" method="post">
+                <% if (data){ %>
+                    <div>
+                        <label>First Name:</label>
+                        <input type="text" name="firstname" value="<%= data.firstname %>">
+                    </div>
+                    <div>
+                        <label>Last Name:</label>
+                        <input type="text" name="lastname" value="<%= data.lastname %>">
+                    </div> 
+                     <div>
+                        <label>Email:</label>
+                        <input type="text" name="email" value="<%= data.email %>">
+                    </div>                      
+                    <div>
+                        <label>Street Address:</label>
+                        <input type="text" name="streetaddress" value="<%= data.streetaddress %>">
+                    </div> 
+                    <div>
+                        <label>City</label>
+                        <input type="text" name="city" value="<%= data.city %>">
+                    </div> 
+                    <div>
+                        <label>State:</label>
+                        <input type="text" name="state" value="<%= data.state %>">
+                    </div> 
+                     <div>
+                        <label>Zip Code:</label>
+                        <input type="text" name="zipcode" value="<%= data.zipcode %>">
+                    </div>
+                     <div>
+                        <label>Delivery Instructions:</label>
+                        <input type="text" name="deliveryinstructions" value="<%= data.deliveryinstructions %>">
+                    </div>
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="Update"/>
+                        <button onclick="location.href='/logout'" type="button" class="btn btn-primary">Sign Out</button>                          
+                    </div>                                            
+                <% } %>
+                </form>                  
+            </div>          
+        </div>        
+</body>
+
+</html>

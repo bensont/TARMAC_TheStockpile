@@ -8,6 +8,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+var morgan = require('morgan');
+app.use(morgan('dev'));
+var User = require('./routes/models/user');
+
+var signup = require('./routes/signup');
+var login = require('./routes/login');
+var dashboard = require('./routes/dashboard');
+var logout = require('./routes/logout');
+
 var methodOverride = require('method-override');
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -20,14 +29,27 @@ app.use(methodOverride(function (req, res) {
 var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-app.use(cookieParser('csci3308'));
+app.use(cookieParser());
 app.use(session({
     secret: 'csci3308',
+    key: 'user_sid',
     resave: false,
-    saveUninitialized: true,
-    cookie: {maxAge: 60000}
+    saveUninitialized: false,
+    cookie: {maxAge: 600000}
 }));
 app.use(flash());
+
+app.use('/login', login);
+app.use('/signup', signup);
+app.use('/dashboard', dashboard);
+app.use('/logout', logout);
+
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
 
 //so first we have to make
 var index = require('./routes/index'); //maybe this is the home page
@@ -49,12 +71,16 @@ app.use('/', homeRoute);
 app.use(express.static('./'));
 
 //local
-// var port = 4000;
+var port = 4000;
 
 //remote
-var port = process.env.PORT;
+//var port = process.env.PORT;
 
 app.listen(port, function () {
     console.log('Server running on http://localhost:' + port)
 
+});
+
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!")
 });
