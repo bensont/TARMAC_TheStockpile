@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Users (
   userID SERIAL,
   firstname VARCHAR(45) NOT NULL,
   lastname VARCHAR(45) NOT NULL,
-  password VARCHAR(32) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   PermissionsLevel VARCHAR(45) NOT NULL,
   StreetAddress VARCHAR(45) NOT NULL,
   City VARCHAR(45) NOT NULL,
