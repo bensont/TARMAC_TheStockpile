@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 // var sequelize = new Sequelize('postgres://nero:postgres@localhost:5432/thestockpile');
 
 // WEB create a sequelize instance with our local postgres database information.
-var sequelize = new Sequelize(process.env.DATABASE_URL;);
+var sequelize = new Sequelize(process.env.DATABASE_URL);
 
 // setup User model and its fields.
 var User = sequelize.define('users', { 
