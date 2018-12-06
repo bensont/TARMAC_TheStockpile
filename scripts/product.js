@@ -46,8 +46,7 @@ function addToQuantity(id){
       if(localStorage.getItem('keyCartArray') == null){
         var empty_json = {};
         var empty_cart_string = JSON.stringify(empty_json);
-        var cartstr = "{\"items\":[]}";
-        localStorage.setItem('keyCartArray',cartstr);
+        localStorage.setItem('keyCartArray',empty_cart_string);
       }
     }
 
