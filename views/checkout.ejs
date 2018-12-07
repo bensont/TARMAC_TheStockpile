@@ -42,9 +42,9 @@
 
     <div class="container">
         <div id="showifempty" style="text-align:center;">
-            <h3>Your cart is empty go shopping<h3>
+            <h3>Your cart is Empty. Go shopping!<h3>
         </div>
-        <h2>Shopping Cart</h2>
+        <h2>Checkout</h2>
         <table id="cartTable" class="table">
             <thead>
                 <tr>
@@ -55,64 +55,26 @@
                 </tr>
             </thead>
             <tbody>
-        </table>
+        </table>	
         <div id="hideIfEmpty">
             <div class="clearfix">
                 <p id="subtotal"></p>
                 <p id="delivery"></p>
                 <p id="total"></p>
-                <a id="checkOutButton" href="/checkout" class="btn btn-outline-success" role="button">Check Out</a>
+                <form action="/checkout" method="post" name="checkoutForm" onsubmit="DoSubmit();">
+                	<input class="btn btn-outline-success" type="submit" value="Complete Order"/>
+                	<input id="totalcost" type="hidden" name="totalcost">
+                	<input id="discounts" type="hidden" name="discounts">
+                	<input id="status" type="hidden" name="status">
+                	<input id="totalquantity" type="hidden" name="totalquantity">
+                	<input id="userid" type="hidden" name="userid" value="<%= data.userid %>">
+                	<input id="cartitems" type="hidden" name="cartitems">
+                </form>                      	
             </div>
-        </div>
+        </div>      
     </div>
 
     <script>
-        function clearCart() {
-            var empty_json = {};
-            var empty_cart_string = JSON.stringify(empty_json);
-            localStorage.setItem('keyCartArray',empty_cart_string);
-            var table_body = document.querySelector('tbody');
-            while (table_body.firstChild) {
-                var node = table_body.firstChild;
-                while (node.firstChild) {
-                    node.removeChild(node.firstChild);
-                }
-                node.parentNode.removeChild(node);
-            }
-            loadEvent();
-        }
-
-        function reloadCart(){
-          var table_body = document.querySelector('tbody');
-          while (table_body.firstChild) {
-              var node = table_body.firstChild;
-              while (node.firstChild) {
-                  node.removeChild(node.firstChild);
-              }
-              node.parentNode.removeChild(node);
-          }
-          loadEvent();
-        }
-
-        function delete_item(id, name){
-            if(confirm("Remove " + name + " from your cart?")){
-              var str = localStorage.getItem('keyCartArray');
-              var json_cart = JSON.parse(str);
-
-              for (i in json_cart) {
-                if(json_cart[i][4] == id){
-                  delete json_cart[i];
-                  break;
-                }
-              }
-
-              formatted_send = JSON.stringify(json_cart);
-              localStorage.setItem('keyCartArray', formatted_send);
-              console.log(formatted_send);
-              reloadCart();
-            }
-        }
-
         function cartEmpty() {
             if (localStorage.getItem('keyCartArray') == null) {
                 return true;
@@ -216,13 +178,31 @@
                 row.appendChild(th_img);
                 row.appendChild(th_name);
                 row.appendChild(th_price);
-                row.appendChild(th_delete_button);
 
                 var table_body = document.querySelector('tbody');
                 var last_row = table_body.lastChild;
 
                 table_body.insertBefore(row, last_row);
             }
+        }
+
+        function DoSubmit(){
+            var s = sum();
+            var t = del(s);
+            var total = s + Number(t);
+            var totalorderquantity = 0;
+            var str = localStorage.getItem('keyCartArray');
+            var json_cart = JSON.parse(str);
+            for (i in json_cart) {
+              totalorderquantity += json_cart[i][3];
+            }
+
+        	document.checkoutForm.totalcost.value = Number(total);
+        	document.checkoutForm.discounts.value = 0;
+        	document.checkoutForm.status.value = String("In Progress");
+        	document.checkoutForm.totalquantity.value = Number(totalorderquantity);
+        	document.checkoutForm.cartitems.value = str;
+        	return true;
         }
     </script>
 

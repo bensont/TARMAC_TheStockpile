@@ -17,6 +17,8 @@ var login = require('./routes/login');
 var dashboard = require('./routes/dashboard');
 var logout = require('./routes/logout');
 
+var checkout = require('./routes/checkout');
+
 var methodOverride = require('method-override');
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -43,6 +45,8 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/dashboard', dashboard);
 app.use('/logout', logout);
+
+app.use('/checkout', checkout);
 
 app.use((req, res, next) => {
     if (req.cookies.user_sid && !req.session.user) {

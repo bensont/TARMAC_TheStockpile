@@ -6,8 +6,6 @@ var User = require('./models/user');
 
 app.route('/')
 	.get((req, res) => {
-		console.log(req.session.user)
-		console.log(req.cookies.user_sid)
 	    if (req.session.user && req.cookies.user_sid) {  		
 		        res.render('dashboard.ejs', {
 		            title: 'Dashboard',

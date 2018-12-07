@@ -32,6 +32,5 @@ app.route('/')
                 res.redirect('/dashboard');
             }
         });
-    });
-    
+    });   
     
