@@ -12,6 +12,13 @@ table, th, td {
 <% if (messages.success) { %>
     <p style="color:green"><%- messages.success %></p>
 <% } %>
+
+<style>
+table, th, td,p {
+    border: 1px solid black;
+    margin-left: 210px;
+}
+</style>
 <!-- The action attribute of the form refers to a item using its database id -->
 <form action="/admin/storeItems/edit/<%= productid %>" method="post" name="form1">
     <table width="25%" border="0">
