@@ -21,23 +21,16 @@ table, th, td {
         <th>Status</th>
         <th>Total Quantity of Order</th>
     </tr>
-    <% if (data) { %>
-    <!-- Using a for-loop to loop over each row in the database.
-    The 'data' variable is passed from the store.js during the response.render function call -->
-        <% data.forEach(function(item){ %>
-            <tr>
-                <td><%= item.orderid %></td>
+</table>
+
+
+<!--Including Footer Partial
+<td><%= item.orderid %></td>
                 <td><%= item.userid %></td>
                 <td><%= item.totalcost %></td>
                 <td><%= item.discounts %></td>
                 <td><%= item.timestamp %></td>
                 <td><%= item.status %></td>
                 <td><%= item.totalquantity %></td>
-            </tr>
-        <% }) %>
-    <% } %>
-</table>
-
-
-<!--Including Footer Partial-->
+-->
 <%- include ../layouts/footer.ejs %>
