@@ -17,12 +17,7 @@ app.get('/', function(request, response) {
 
   db.multi(query + ';' + chair_image_query + ";" + table_image_query + ";" + dresser_image_query + ";" + mirror_image_query + ";" + lighting_image_query)
     .then(all_data => {
-      console.log({ 'Chair': all_data[1],
-                    'Table': all_data[2],
-                    'Dresser': all_data[3],
-                    'Mirror': all_data[4],
-                    'Lighting': all_data[5]});
-      response.render('all_products_list.ejs', {
+        response.render('all_products_list.ejs', {
         title: 'Store listing',
         data: all_data[0],
         image_data: { 'Chair': all_data[1],
