@@ -21,8 +21,7 @@ app.get('/', function(request, response) {
                     'Table': all_data[2],
                     'Dresser': all_data[3],
                     'Mirror': all_data[4],
-                    'Lighting': all_data[5]},
-    });
+                    'Lighting': all_data[5]});
       response.render('all_products_list.ejs', {
         title: 'Store listing',
         data: all_data[0],
