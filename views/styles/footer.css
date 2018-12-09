@@ -1,0 +1,48 @@
+html,body{
+    height: 100%
+}
+
+#footercss_holder{
+    min-height: 100%;
+    position:relative;
+}
+
+#footercss_body{
+    padding-bottom: 135px;
+}
+
+footer{
+    height: 135px;
+    width:100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #343a40;
+}
+
+#footer_container{
+}
+
+#footer_logo{
+  padding:8px;
+  margin: 2px 2px 8px 8px;
+  height: 75px;
+  width: auto;
+  background-color: #343a40;
+  float:right;
+}
+#footer_team{
+  padding:15px 4px 4px 4px;
+  margin: 15px 2px 8px 8px;
+  background-color: #343a40;
+  color: white;
+  font-family: Impact;
+
+}
+
+#footer_statement{
+  text-align: center;
+  padding: 8px;
+  margin: 12px 4px 4px 4px;
+  color: #F4F4F4;
+}

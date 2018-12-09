@@ -3,6 +3,7 @@
     <%- include ./layouts/productheader.ejs %>
 </head>
 <body>
+<%- include ./layouts/footer_top.ejs %>
 <!--Including Header and NavBar Partial-->
 <%- include ./layouts/navbar.ejs %>
 <nav aria-label="breadcrumb">
@@ -20,7 +21,7 @@
                     <div>
                         <label>Password:</label>
                         <input type="password" name="pass"/>
-                    </div>    
+                    </div>
                     <div>
                         <label>First Name:</label>
                         <input type="text" name="firstname"/>
@@ -28,13 +29,14 @@
                     <div>
                         <label>Last Name:</label>
                         <input type="text" name="lastname"/>
-                    </div>     
+                    </div>
                     <div>
                         <input class="btn btn-primary" type="submit" value="Sign Up"/>
                     </div>
-                </form>                  
-            </div>          
+                </form>
+            </div>
         </div>
+<%- include ./layouts/footer_bot.ejs %>        
 </body>
 
 </html>

@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <%- include ./layouts/footer_top.ejs %>
     <!--Including Header and NavBar Partial-->
     <%- include ./layouts/navbar.ejs %>
     <nav aria-label="breadcrumb">
@@ -32,7 +33,7 @@
     The 'data' variable is passed from the store.js during the response.render function call -->
                     <% data.forEach(function(item){ %>
                     <div class="row">
-                        <div class="card product-card">
+                        <div class="card prtopoduct-card">
                             <a href="/<%= item.type %>/<%- item.id %>">
                                 <img class="card-img-top" src="/Database_Images/<%= item.image %>" alt="Card image cap">
                             </a>
@@ -60,6 +61,7 @@
             <div class="col-3"></div>
         </div>
     </div>
+<%- include ./layouts/footer_bot.ejs %>    
 </body>
 
 </html>
