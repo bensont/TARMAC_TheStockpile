@@ -29,14 +29,14 @@
   The 'data' variable is passed from the store.js during the response.render function call -->
                   <% data.forEach(item => { %>
                   <div class="row">
-                      <div class="card product-card">
+                      <div class="card product-card" id="category_picture">
                           <a href="/product/<%= item.type %>/<%- item.id %>">
                             <img class="card-img-top" src="/Database_Images/<%= image_data[item.type][0]['image'] %>" alt="Card image cap">
                           </a>
                           <div class="card-body">
                               <ul class="list-group list-group-flush">
                                   <li class="list-group-item">
-                                      <p class="card-title" align="center"><a href="/product/<%= item.type %>/<%- item.id %>">
+                                      <p class="card-title" align="center" id="category_link"><a href="/product/<%= item.type %>/<%- item.id %>">
                                               <%= item.type %></a></p>
                                   </li>
                                   <li class="list-group-item">
