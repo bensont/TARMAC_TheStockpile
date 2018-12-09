@@ -110,7 +110,8 @@ app.post('/addItem', function (request, response) {
     request.assert('image', 'Picture is required').notEmpty();
     request.assert('image2', 'Picture 2 is required').notEmpty();
     request.assert('image3', 'Picture 3 is required').notEmpty();
-    request.assert('description', 'description is required').notEmpty();
+    request.assert('description', 'Description is required').notEmpty();
+    request.assert('dimensions', 'Dimensions are required').notEmpty();
 
     var errors = request.validationErrors();
     if (!errors) { // No valProductIDation errors

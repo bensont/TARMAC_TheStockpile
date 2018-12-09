@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var bcrypt = require('bcrypt');
 
 // LOCAL create a sequelize instance with our local postgres database information.
-// var sequelize = new Sequelize('postgres://nero:postgres@localhost:5432/thestockpile');
+//var sequelize = new Sequelize('postgres://nero:postgres@localhost:5432/thestockpile');
 
 // WEB create a sequelize instance with our local postgres database information.
 var sequelize = new Sequelize(process.env.DATABASE_URL);
@@ -75,10 +75,16 @@ var User = sequelize.define('users', {
         return bcrypt.compareSync(password, this.password);
     } 
 
+    User.prototype.isAdmin = function(permissionslevel) {
+        if (permissionslevel != "customer") {
+            return true;
+        }
+    }     
+
 // create all the defined tables in the specified database.
-sequelize.sync()
-    .then(() => console.log('users table has been successfully created, if one doesn\'t exist'))
-    .catch(error => console.log('This error occured', error));
+//sequelize.sync()
+//    .then(() => console.log('users table has been successfully created, if one doesn\'t exist'))
+//    .catch(error => console.log('This error occured', error));
 
 // export User model for use in other files.
 module.exports = User;

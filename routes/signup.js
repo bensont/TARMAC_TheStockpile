@@ -13,7 +13,7 @@ var sessionChecker = (req, res, next) => {
 app.route('/')
     .get(sessionChecker, (req, res) => {
          res.render('signup.ejs', {
-            title: 'Signup'
+            title: 'Signup',
         })
     })
     .post((req, res) => {
@@ -28,11 +28,6 @@ app.route('/')
             state: ' ',
             zipcode: '0',
             deliveryinstructions: ' ',
-        })
-        .then(user => {
-            req.session.user = user.dataValues;
-            req.sessioncookie.user = user.dataValues;
-            res.redirect('/dashboard');
         })
         .catch(error => {
         	console.log(error);

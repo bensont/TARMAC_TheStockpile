@@ -7,7 +7,7 @@ var pgp = require('pg-promise')();
 //    database: 'thestockpile',
 //    user: 'nero',
 //    password: 'postgres' // TODO: Fill in your PostgreSQL password here.
-//                 // Use empty string if you did not set a password
+                 // Use empty string if you did not set a password
 // };
 
 //remote
