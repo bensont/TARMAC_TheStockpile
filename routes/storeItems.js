@@ -132,7 +132,8 @@ app.post('/addItem', function (request, response) {
             dimensions: request.sanitize('dimensions').escape().trim()
         };
         // Running SQL query to insert data into the store table
-        db.none('INSERT INTO products(name, brand,types,cost, material, image,image2,image3,description,dimensions, stock,categorydescription) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.description, item.dimensions, item.stock], 'Our chairs are only made with the finest materials and are each checked for quality by one of our master craftsmen. No matter your budget or style, we have a classy seat for your needs.')
+        //Our chairs are only made with the finest materials and are each checked for quality by one of our master craftsmen. No matter your budget or style, we have a classy seat for your needs.
+        db.none('INSERT INTO products(name, brand,types,cost, material, image,image2,image3,description,dimensions, stock,categorydescription) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.description, item.dimensions, item.stock, 'Our chairs are only made with the finest materials and are each checked for quality by one of our master craftsmen. No matter your budget or style, we have a classy seat for your needs.'])
             .then(function (result) {
                 request.flash('success', 'Data added successfully!');
                 // render views/store/add.ejs
