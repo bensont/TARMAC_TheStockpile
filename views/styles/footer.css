@@ -8,11 +8,11 @@ html,body{
 }
 
 #footercss_body{
-    padding-bottom: 135px;
+    padding-bottom: 80px;
 }
 
 footer{
-    height: 135px;
+    height: 80px;
     width:100%;
     position: absolute;
     left: 0;
@@ -25,24 +25,24 @@ footer{
 
 #footer_logo{
   padding:8px;
-  margin: 2px 2px 8px 8px;
-  height: 75px;
+  margin: 2px;
+  height: 65px;
   width: auto;
   background-color: #343a40;
   float:right;
 }
 #footer_team{
-  padding:15px 4px 4px 4px;
-  margin: 15px 2px 8px 8px;
+  padding:4px;
+  margin:20px 8px 8px 8px;
   background-color: #343a40;
   color: white;
   font-family: Impact;
-
+  vertical-align: center;
 }
 
 #footer_statement{
   text-align: center;
   padding: 8px;
-  margin: 12px 4px 4px 4px;
+  margin:4px;
   color: #F4F4F4;
 }
