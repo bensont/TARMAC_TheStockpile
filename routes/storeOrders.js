@@ -3,7 +3,7 @@ var db = require('../database');
 var app = express();
 module.exports = app;
 
-app.get('/numberOfOrders', function (request, response) {
+app.get('/', function (request, response) {
 
     // TODO: Initialize the query variable with a SQL query
     // that returns all the rows and columns in the 'store' table
