@@ -132,7 +132,10 @@ app.post('/addItem', function (request, response) {
             dimensions: request.sanitize('dimensions').escape().trim()
         };
         // Running SQL query to insert data into the store table
-        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,description,dimensions, stock) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.description, item.dimensions, item.stock])
+        //Our chairs are only made with the finest materials and are each checked for quality by one of our master craftsmen. No matter your budget or style, we have a classy seat for your needs.
+        var missionStatment = 'Our chairs are only made with the finest materials and are each checked for quality by one of our master craftsmen. No matter your budget or style, we have a classy seat for your needs.';
+
+        db.none('INSERT INTO products(name, brand,type,cost, material, image,image2,image3,description,dimensions, stock,categorydescription) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',[item.name, item.brand, item.type, item.cost, item.material, item.image, item.image2, item.image3, item.description, item.dimensions, item.stock, missionStatment])
             .then(function (result) {
                 request.flash('success', 'Data added successfully!');
                 // render views/store/add.ejs
@@ -242,7 +245,7 @@ app.put('/edit/(:productid)', function (req, res) {
     req.assert('image', 'Picture is required').notEmpty();
     req.assert('image2', 'Picture 2 is required').notEmpty();
     req.assert('image3', 'Picture 3 is required').notEmpty();
-    req.assert('description', 'description is required').notEmpty();
+    req.assert('description', 'Description is required').notEmpty();
     var itemProductID = req.params.produtid;
 
     var errors = req.validationErrors();
@@ -278,7 +281,7 @@ app.put('/edit/(:productid)', function (req, res) {
                 req.flash('error', err);
                 res.render('products/editProduct', {
                     title: 'Edit Item',
-                    productid: row.productid,
+                    productid: itemProductID,
                     name: row.name,
                     brand: row.brand,
                     type: row.type,

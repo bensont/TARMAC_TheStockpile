@@ -2,10 +2,11 @@
 <head>
     <%- include ./layouts/productheader.ejs %>
     <script>
-    
+
     </script>
 </head>
 <body>
+<%- include ./layouts/footer_top.ejs %>
 <!--Including Header and NavBar Partial-->
 <%- include ./layouts/navbar.ejs %>
 <nav aria-label="breadcrumb">
@@ -27,23 +28,23 @@
                     <div>
                         <label>Last Name:</label>
                         <input type="text" name="lastname" value="<%= data.lastname %>">
-                    </div> 
+                    </div>
                      <div>
                         <label>Email:</label>
                         <input type="text" name="email" value="<%= data.email %>">
-                    </div>                      
+                    </div>
                     <div>
                         <label>Street Address:</label>
                         <input type="text" name="streetaddress" value="<%= data.streetaddress %>">
-                    </div> 
+                    </div>
                     <div>
                         <label>City</label>
                         <input type="text" name="city" value="<%= data.city %>">
-                    </div> 
+                    </div>
                     <div>
                         <label>State:</label>
                         <input type="text" name="state" value="<%= data.state %>">
-                    </div> 
+                    </div>
                      <div>
                         <label>Zip Code:</label>
                         <input type="text" name="zipcode" value="<%= data.zipcode %>">
@@ -54,12 +55,13 @@
                     </div>
                     <div>
                         <input class="btn btn-primary" type="submit" value="Update"/>
-                        <button onclick="location.href='/logout'" type="button" class="btn btn-primary">Sign Out</button>                          
-                    </div>                                            
+                        <button onclick="location.href='/logout'" type="button" class="btn btn-primary">Sign Out</button>
+                    </div>
                 <% } %>
-                </form>                  
-            </div>          
-        </div>        
+                </form>
+            </div>
+        </div>
+<%- include ./layouts/footer_bot.ejs %>               
 </body>
 
 </html>
